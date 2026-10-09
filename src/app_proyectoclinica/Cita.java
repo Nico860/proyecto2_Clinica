@@ -31,7 +31,38 @@ public class Cita {
     }
     
     //metodos
-
+    public boolean esEstado(String estado){
+        //devuelve true si el estado es el mismo
+        if(this.estado != estado)
+            return false;
+        
+        return true;
+    }
+    
+    public boolean esFecha(String fecha){
+        //devuelve true si la fecha es la misma
+        if(this.fecha != fecha)
+            return false;
+        
+        return true;
+    }
+    
+    public boolean esMedico(Medico medico){
+        //devuelve true si es el mismo  medico
+        if(!this.medico.esCodigo(medico.getCodigo()))
+            return false;
+        
+        return true;
+    }
+    
+    public boolean esPaciente(Paciente paciente){
+        //devuelve true si es el paciente
+        if(!this.paciente.esCodigo(paciente.getCodigo()))
+            return false;
+        
+        return true;
+    }
+    
     public Paciente getPaciente() {
         return paciente;
     }
