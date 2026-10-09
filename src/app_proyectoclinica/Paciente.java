@@ -8,6 +8,6 @@ package app_proyectoclinica;
  *
  * @author tzulmoran
  */
-public class Paciente {
+public class Paciente extends Persona{
     
 }
