@@ -9,5 +9,5 @@ package app_proyectoclinica;
  * @author CHAPTOPS TACTIC
  */
 public class Medico extends Persona{
-    
+    //Hola
 }
