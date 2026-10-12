@@ -63,6 +63,22 @@ public class Cita {
         return true;
     }
     
+    public boolean cambiarEstado(String estado){
+        //se valida que la cita no este cancelada
+        if(this.estado.equalsIgnoreCase("cancelada")){
+            return false;
+        }
+        //se valida tambien que la cita aun no halla sido atendida
+        if(this.estado.equalsIgnoreCase("atendida")){
+            return false;
+        }
+        
+        //se cambia de estado
+        this.estado = estado;
+        
+        return true;
+    }
+    
     public Paciente getPaciente() {
         return paciente;
     }
