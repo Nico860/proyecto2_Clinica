@@ -9,5 +9,22 @@ package app_proyectoclinica;
  * @author CHAPTOPS TACTIC
  */
 public class Medico extends Persona{
-    //Atributos
+    
+    private String especialidad;
+    
+    public Medico(String especialidad,String codigo, String nombre, String dpi, String telefono){
+        super(codigo, nombre, dpi, telefono);
+        this.especialidad = especialidad;
+    }
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+    
+    
+    
 }
