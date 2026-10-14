@@ -28,7 +28,7 @@ public class Cita {
         this.motivo = motivo;
         this.estado = estado;
         this.hora = hora;
-    }
+    }   
     
     //metodos
     public boolean esEstado(String estado){
