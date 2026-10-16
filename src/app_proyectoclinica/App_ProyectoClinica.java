@@ -14,7 +14,8 @@ public class App_ProyectoClinica {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        FormClinica fc = new FormClinica();
+        fc.setVisible(true);
     }
     
 }
