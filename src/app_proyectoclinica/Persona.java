@@ -75,7 +75,7 @@ public abstract class Persona implements Serializable {
     
     //Método base para guardar en el archivo de texto
     public String lineaArchivo(){
-        return codigo + ", " + nombre + ", " + dpi + ", " + telefono;
+        return codigo + "|" + nombre + "|" + dpi + "|" + telefono;
     }
     
     //Sobreescritura del método 

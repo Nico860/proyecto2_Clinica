@@ -4,6 +4,17 @@
  */
 package app_proyectoclinica;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,16 +24,26 @@ import javax.swing.JOptionPane;
 public class FormClinica extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormClinica.class.getName());
+    
+    //Se inicializan los nombres de los archivos de guardado
+    private static final String ARCHIVOCITAS = "citas.dat";
+    private static final String ARCHIVOATENCIONES = "atenciones.dat";
+    //para el archivo de pacientes y medicos se usara un solo archivo
+    private static final String ARCHIVOPERSONAS = "personas.txt";
+    
+    //Se inicializan las listas para guardar la información en ejecución
+    private ArrayList<Cita> citas = new ArrayList<>();
+    private ArrayList<Atencion> atenciones = new ArrayList<>();
+    //Para cuestiones de busqueda de datos se opta por usar dos listas
+    //una para pacientes y otra para medicos
+    private ArrayList<Paciente> pacientes = new ArrayList<>();
+    private ArrayList<Medico> medicos = new ArrayList<>();
 
     /**
      * Creates new form FormClinica
      */
     public FormClinica() {
         initComponents();
-        
-        Object a = "Hola";
-        
-        System.out.println(a);
     }
 
     /**
@@ -592,6 +613,132 @@ public class FormClinica extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    //#Region guardar archivos
+    
+    private void guardarMedicosOPacientes(){
+        //se junta en una misma lista los pacientes y medicos
+        ArrayList<Persona> personas = new ArrayList<>();
+        personas.addAll(medicos);
+        personas.addAll(pacientes);
+                
+        //se crea o actualiza el archivo
+        try (PrintWriter pw = new PrintWriter(new FileWriter(ARCHIVOPERSONAS))){
+            //se recorre la lista y se guarda cada elemento en el archivo
+            for (Persona p : personas) {
+                pw.println(p.lineaArchivo());
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error al guardar los medicos y pacientes: " + e.getMessage());
+        }
+    }
+    
+    private void guardarCitas(){
+        //se crea o sobreescribe el archivo
+        try (ObjectOutputStream ou = new ObjectOutputStream(new FileOutputStream(ARCHIVOCITAS))){
+            //se serializa la lista
+            ou.writeObject(citas);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error al guardar las citas: " + e.getMessage());
+        }
+    }
+    
+    private void guardarAtenciones(){
+        //se crea o sobreescribe el archivo
+        try (ObjectOutputStream ou = new ObjectOutputStream(new FileOutputStream(ARCHIVOATENCIONES))){
+            //se serializa la lista
+            ou.writeObject(atenciones);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error al guardar las citas: " + e.getMessage());
+        }       
+    }
+    //EndRegion
+    
+    //#Region cargar archivos
+    
+    private void cargarMedicosYPacientes(){
+        File f = new File(ARCHIVOPERSONAS);
+        
+        //se valida
+        if(!f.exists()) return;
+        
+        //se vacían las listas
+        pacientes.clear();
+        medicos.clear();
+        
+        //se lee el archivo
+        try (BufferedReader bf = new BufferedReader(new FileReader(f))){
+            String linea;
+            
+            //mientras que haigan linas que leer se repetira el ciclo
+            while((linea = bf.readLine()) != null){
+                //se valida que no este vacía
+                if(linea.trim().isEmpty()) continue;
+                
+                //se splitea la linea
+                String[] s = linea.split("\\|");
+                
+                //se valida el tipo de instancia que es
+                if(s[0].equalsIgnoreCase("P")){
+                    //se valida el formato
+                    if(s.length < 5 || s.length > 5) continue;
+                    //se crea el objeto y se guarda en la lista de pacientes
+                    pacientes.add(new Paciente(s[1], s[2], s[3], s[4]));
+                }else{
+                    //se valida el formato
+                    if(s.length < 6 || s.length > 6) continue;
+                    //se crea el objeto y se guarda en la lista de medicos
+                    medicos.add(new Medico(s[5], s[1], s[2], s[3], s[4]));
+                }
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar el archivo de pacentes y medicos: " + e.getMessage());
+        }
+        
+        //se refresca la vista
+    }
+    
+    private void cargarCitas(){
+        File f = new File(ARCHIVOCITAS);
+        
+        //se valida que exista
+        if(!f.exists()) return;
+        
+        //se limpia la lista
+        citas.clear();
+        
+        //se lee el archivo
+        try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream(f))){
+            //se deserializa el contenido
+            citas = (ArrayList<Cita>)oi.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar las citas: " + e.getMessage());
+        }
+        //se refresca la vista
+        
+    }
+    
+    private void cargarAtenciones(){
+        File f = new File(ARCHIVOATENCIONES);
+        
+        //se valida que exista
+        if(!f.exists()) return;
+        
+        //se limpia la lista
+        atenciones.clear();
+        
+        //se lee el archivo
+        try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream(f))){
+            //se deserializa el contenido
+            atenciones = (ArrayList<Atencion>)oi.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar el archivo de atenciones: " + e.getMessage());
+        }
+        //se refresca la vista
+        
+    }
+    //EndRegion
+    
     /**
      * @param args the command line arguments
      */

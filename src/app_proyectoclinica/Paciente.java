@@ -50,6 +50,6 @@ public class Paciente extends Persona{
     
     @Override
     public String lineaArchivo(){
-        return super.lineaArchivo();
+        return ("P|" + super.lineaArchivo());
     }
 }
