@@ -280,8 +280,7 @@ public class FormClinica extends javax.swing.JFrame {
                                 .addGap(60, 60, 60)
                                 .addComponent(jLabel9)
                                 .addGap(57, 57, 57)
-                                .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel12))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
                                 .addComponent(rbtnPendiente)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -481,6 +480,9 @@ public class FormClinica extends javax.swing.JFrame {
         jLabel22.setText("Teléfono:");
 
         btnAgregarPaciente1.setText("Agregar");
+        btnAgregarPaciente1.addActionListener(this::btnAgregarPaciente1ActionPerformed);
+
+        fieldTxtPaciente.addActionListener(this::fieldTxtPacienteActionPerformed);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -856,6 +858,49 @@ public class FormClinica extends javax.swing.JFrame {
     private void btnGuardarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCitaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarCitaActionPerformed
+
+    private void fieldTxtPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldTxtPacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldTxtPacienteActionPerformed
+
+    private void btnAgregarPaciente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPaciente1ActionPerformed
+        // 1. Obtener los textos ingresados y quitar espacios extras al inicio/final
+        String codigo = txtCodigoPaciente.getText().trim();
+        String nombre = txtNombre.getText().trim();
+        String dpi = txtDpi.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+
+        // 2. Validación de campos vacíos[cite: 3, 5]
+        if (codigo.isEmpty() || nombre.isEmpty() || dpi.isEmpty() || telefono.isEmpty()) {
+            JOptionPane.showMessageDialog(this,"Todos los campos son importantes", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
+            return; // Detiene la ejecución
+        }
+
+        // 3. Validación de código duplicado[cite: 3, 5]
+        for (Paciente p : pacientes) {
+            if (p.esCodigo(codigo)) {
+                JOptionPane.showMessageDialog(this, 
+                    "Ya existe un paciente registrado con el código: " + codigo, 
+                    "Código Duplicado", 
+                    JOptionPane.ERROR_MESSAGE);
+                return; // Detiene la ejecución
+            }
+        }
+
+        // 4. Crear el objeto paciente en lista global en memoria
+        Paciente nuevoPaciente = new Paciente(codigo, nombre, dpi, telefono);
+        pacientes.add(nuevoPaciente);
+
+        // 5. Guardar en el archivo de texto personas.txt
+        guardarMedicosOPacientes();
+
+        // 6. Limpiar campos y actualizar la vista
+        limpiarCamposPaciente();
+        llenarTablaPacientes();
+
+        // 7. Notificar al usuario
+        JOptionPane.showMessageDialog(this, "Paciente registrado exitosamente.");
+    }//GEN-LAST:event_btnAgregarPaciente1ActionPerformed
 
     
     //#Region guardar archivos

@@ -25,8 +25,15 @@ public class Medico extends Persona{
         this.especialidad = especialidad;
     }
     
+    //Sobreescritura del método lineaArchivo
     @Override
     public String lineaArchivo(){
         return ("M|" + super.lineaArchivo() + "|" + especialidad);
+    }
+    
+    //Añadir la etiqueta "M|"
+    @Override
+    public String lineaArchivo(){
+        return "M|" + super.lineaArchivo() + "|" + especialidad;
     }
 }

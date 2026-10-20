@@ -4,13 +4,14 @@
  */
 package app_proyectoclinica;
 
-import javax.print.attribute.standard.Media;
+import java.io.Serializable;
 
 /**
  *
  * @author CHAPTOPS TACTIC
  */
-public class Cita {
+public class Cita implements Serializable{
+    private static final long serialVersionUID = 1L;
     //atributos
     private Paciente paciente;
     private Medico medico;
@@ -30,7 +31,7 @@ public class Cita {
         this.hora = hora;
     }   
     
-    //metodos
+    //Compara el estado en la base de datos con el ingresado
     public boolean esEstado(String estado){
         //devuelve true si el estado es el mismo
         if(this.estado != estado)
@@ -39,46 +40,36 @@ public class Cita {
         return true;
     }
     
+    //Compara que el atributo fecha no sea null y compara con una recibida por parámetro
     public boolean esFecha(String fecha){
         //devuelve true si la fecha es la misma
-        if(this.fecha != fecha)
-            return false;
-        
-        return true;
+        return this.fecha != null && this.fecha.equalsIgnoreCase(fecha);
     }
     
+    //Verifica que si la cita pertece a un médigo
     public boolean esMedico(Medico medico){
         //devuelve true si es el mismo  medico
-        if(!this.medico.esCodigo(medico.getCodigo()))
-            return false;
-        
-        return true;
+        return this.medico != null && this.medico.esCodigo(medico.getCodigo());
     }
     
+    //Verifica si la cita pertenece a un paciente
     public boolean esPaciente(Paciente paciente){
         //devuelve true si es el paciente
-        if(!this.paciente.esCodigo(paciente.getCodigo()))
-            return false;
-        
-        return true;
+        return this.paciente != null && paciente != null && this.paciente.esCodigo(paciente.getCodigo());
     }
     
-    public boolean cambiarEstado(String estado){
-        //se valida que la cita no este cancelada
-        if(this.estado.equalsIgnoreCase("cancelada")){
-            return false;
+    //Actualiza el estado de una cita a un nuevo estado
+    public boolean cambiarEstado(String estado) {
+        //Validación ¿ Cancelado o atendido?
+        if (this.estado != null && (this.estado.equalsIgnoreCase("cancelada") || this.estado.equalsIgnoreCase("atendida"))) {
+            return false; //No se modifica la cita 
         }
-        //se valida tambien que la cita aun no halla sido atendida
-        if(this.estado.equalsIgnoreCase("atendida")){
-            return false;
-        }
-        
-        //se cambia de estado
+        //Si no, se aplica el nuevo estado;
         this.estado = estado;
-        
-        return true;
+        return true; // Asegurar que se realizó con éxito;
     }
     
+    //Getters
     public Paciente getPaciente() {
         return paciente;
     }

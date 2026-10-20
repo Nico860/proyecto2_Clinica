@@ -28,7 +28,7 @@ public class Paciente extends Persona{
         return atenciones;
     }
     
-    //método para añadir el 
+    //método para añadir un paciente
     public void agregarAtencion(Atencion atencion){
         this.atenciones.add(atencion);
     }
