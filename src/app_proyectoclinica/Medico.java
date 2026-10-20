@@ -30,10 +30,4 @@ public class Medico extends Persona{
     public String lineaArchivo(){
         return ("M|" + super.lineaArchivo() + "|" + especialidad);
     }
-    
-    //Añadir la etiqueta "M|"
-    @Override
-    public String lineaArchivo(){
-        return "M|" + super.lineaArchivo() + "|" + especialidad;
-    }
 }
