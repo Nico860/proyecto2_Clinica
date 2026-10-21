@@ -95,7 +95,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="6" y="6" width="320" height="-1"/>
+                      <AbsoluteConstraints x="6" y="6" width="320" height="610"/>
                     </Constraint>
                   </Constraints>
 
@@ -170,7 +170,7 @@
                                   <Component id="btnRegistrarAtencion" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtBuscarHistorial" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="157" max="32767" attributes="0"/>
+                              <EmptySpace pref="140" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -294,7 +294,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="350" y="10" width="730" height="620"/>
+                      <AbsoluteConstraints x="350" y="10" width="730" height="600"/>
                     </Constraint>
                   </Constraints>
 
@@ -325,7 +325,7 @@
                                   <Component id="lblTotalCostos" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                                   <Component id="jLabel36" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="50" max="32767" attributes="0"/>
+                              <EmptySpace pref="30" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -776,6 +776,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Nueva Cita"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevaCitaActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel16">
                       <Properties>
@@ -1363,7 +1366,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="15" y="6" width="-1" height="590"/>
+                      <AbsoluteConstraints x="15" y="6" width="-1" height="610"/>
                     </Constraint>
                   </Constraints>
 
@@ -1657,7 +1660,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="344" y="6" width="-1" height="590"/>
+                      <AbsoluteConstraints x="344" y="6" width="-1" height="610"/>
                     </Constraint>
                   </Constraints>
 
@@ -1694,7 +1697,7 @@
                               <Component id="JS2" min="-2" pref="465" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnEliminarMedico" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="20" max="32767" attributes="0"/>
+                              <EmptySpace pref="40" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

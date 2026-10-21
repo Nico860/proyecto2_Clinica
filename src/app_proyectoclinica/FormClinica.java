@@ -281,10 +281,10 @@ public class FormClinica extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrarAtencion)
                     .addComponent(txtBuscarHistorial))
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
-        jPanel5.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 320, -1));
+        jPanel5.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 320, 610));
 
         jPanel12.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -337,10 +337,10 @@ public class FormClinica extends javax.swing.JFrame {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTotalCostos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel36))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        jPanel5.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 730, 620));
+        jPanel5.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 730, 600));
 
         jTabbedPane1.addTab("Consultas", jPanel5);
 
@@ -412,6 +412,7 @@ public class FormClinica extends javax.swing.JFrame {
 
         btnNuevaCita.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnNuevaCita.setText("Nueva Cita");
+        btnNuevaCita.addActionListener(this::btnNuevaCitaActionPerformed);
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setText("Buscar Por");
@@ -892,7 +893,7 @@ public class FormClinica extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 6, -1, 590));
+        jPanel4.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 6, -1, 610));
 
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
@@ -951,10 +952,10 @@ public class FormClinica extends javax.swing.JFrame {
                 .addComponent(JS2, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEliminarMedico)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 6, -1, 590));
+        jPanel4.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 6, -1, 610));
 
         jTabbedPane1.addTab("Medicos", jPanel4);
 
@@ -990,117 +991,9 @@ public class FormClinica extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    //Método para mostrar datos en tabla
-    private void llenarTablaPacientes(){
-    javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(
-            new String[]{"Código", "Nombre", "DPI", "Teléfono"}, 0
-        );
-        for (Paciente p : pacientes) {
-            model.addRow(new Object[]{p.getCodigo(), p.getNombre(), p.getDpi(), p.getTelefono()});
-        }
-        jTable2.setModel(model);
-    }
-
-    private void limpiarCamposPaciente(){
-        //Setear campos
-        txtCodigoPaciente.setText("");
-        txtNombre.setText("");
-        txtDpi.setText("");
-        txtTelefono.setText("");
-    }
-    
-    //Método para mostrar datos en tabla
-    private void llenartablalMedicos(){
-        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(
-        new String[]{"Código", "Nombre", "DPI", "Teléfono", "Especialidad"}, 0
-        );
-        
-        for (Medico m : medicos) {
-            model.addRow(new Object[]{m.getCodigo(), m.getNombre(), m.getDpi(), m.getTelefono(), m.getEspecialidad()});
-        }
-        tbMedicos.setModel(model);
-    }
-    
-    private void actualizarComboBoxes(){
-        cobPaciente.removeAllItems();
-        cobPaciente.addItem("-- Seleccione un Paciente --");
-        for (Paciente p : pacientes) {
-            cobPaciente.addItem(p.getCodigo() + " - " + p.getNombre());
-        }
-
-        cobMedico.removeAllItems();
-        cobMedico.addItem("-- Seleccione un Medico --");
-        cobModificarMedico.removeAllItems();
-        cobModificarMedico.addItem("-- Seleccione un Medico --");
-
-        for (Medico m : medicos) {
-            String item = m.getCodigo() + " - " + m.getNombre();
-            cobMedico.addItem(item);
-            cobModificarMedico.addItem(item);
-        }
-    }
     
     private void btnGuardarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCitaActionPerformed
-        // Validar que el usuario haya seleccionado un paciente y un médico existendes del ComboBox
-        if (cobPaciente.getSelectedIndex() <= 0 || cobMedico.getSelectedIndex() <= 0) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar un Paciente y un Médico válidos.", "Error de compatibilidad", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
 
-        // Extraer el motivo y el año de los campos de texto
-        String motivo = txtMotivo.getText().trim();
-        String ano = txtAno.getText().trim();
-
-        // Validación de campos vacios
-        if (motivo.isEmpty() || ano.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese el motivo y el año para la cita.", "Campos Incompletos", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        // construcción de cadena de texto para la Fecha (DD/MM/AA) y la Hora (H:mm) desde los ComboBoxes
-        String dia = cobDia.getSelectedItem().toString();
-        String mes = cobMes.getSelectedItem().toString();
-        String fecha = dia + "/" + mes + "/" + ano;
-        String hora = cobHora.getSelectedItem().toString() + ":" + cobMinuto.getSelectedItem().toString();
-
-        // Extraer el código único (primer elemento antes del guion "-") de los desplegables
-        String codPaciente = cobPaciente.getSelectedItem().toString().split(" - ")[0];
-        String codMedico = cobMedico.getSelectedItem().toString().split(" - ")[0];
-
-        // Buscar los objetos completos en las listas en memoria
-        Paciente pacienteSel = null;
-        for (Paciente p : pacientes) {
-            if (p.esCodigo(codPaciente)) {
-                pacienteSel = p;
-                break;
-            }
-        }
-
-        Medico medicoSel = null;
-        for (Medico m : medicos) {
-            if (m.esCodigo(codMedico)) {
-                medicoSel = m;
-                break;
-            }
-        }
-
-        // Estado paciente inicial 
-        String estado = "Pendiente";
-
-        // Instanciar la nueva cita 
-        Cita nuevaCita = new Cita(pacienteSel, medicoSel, fecha, motivo, estado, hora);
-        //guardarla en el ArrayList 
-        citas.add(nuevaCita);
-        //Serializarla 
-        guardarCitas();
-
-        // Limpiart campos y acutalizar tabla 
-        limpiarCamposCita();
-        llenarTablaCitas();
-
-        // Mostrar mensaje de exito
-        JOptionPane.showMessageDialog(this, "Cita programada exitosamente con estado Pendiente.");
     }//GEN-LAST:event_btnGuardarCitaActionPerformed
 
     private void fieldTxtPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldTxtPacienteActionPerformed
@@ -1251,61 +1144,65 @@ public class FormClinica extends javax.swing.JFrame {
         }
         tbCitas.setModel(model);
     }//GEN-LAST:event_btnBuscarCitaActionPerformed
-    
-    //Método para buscar Paciente por Códgio o DPI
-    private void buscarPaciente(String criterio) {
-        if (criterio.isEmpty()) {
-            llenarTablaPacientes();
-            return;
-        }
-        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(
-            new String[]{"Código", "Nombre", "DPI", "Teléfono"}, 0
-        );
-        for (Paciente p : pacientes) {
-            if (p.getCodigo().equalsIgnoreCase(criterio) || p.getDpi().equalsIgnoreCase(criterio) || p.getNombre().toLowerCase().contains(criterio.toLowerCase())) {
-                model.addRow(new Object[]{p.getCodigo(), p.getNombre(), p.getDpi(), p.getTelefono()});
-            }
-        }
-        jTable2.setModel(model);
-    }
-        
-    //Modificar paciente
-    private void modificarPaciente(String codigo) {
-        for (Paciente p : pacientes) {
-            if (p.esCodigo(codigo)) {
-                if (!txtNombre.getText().trim().isEmpty()) p.setNombre(txtNombre.getText().trim());
-                if (!txtDpi.getText().trim().isEmpty()) p.setDpi(txtDpi.getText().trim());
-                if (!txtTelefono.getText().trim().isEmpty()) p.setTelefono(txtTelefono.getText().trim());
-                break;
-            }
-        }
-        guardarMedicosOPacientes();
-        llenarTablaPacientes();
-        actualizarComboBoxes();
-        limpiarCamposPaciente();
-        JOptionPane.showMessageDialog(this, "Paciente actualizado correctamente.");
-    }
-    
-    // Método para eliminar paciente
-    private void eliminarPaciente() {
-            int filaSeleccionada = jTable2.getSelectedRow();
-            if (filaSeleccionada == -1) {
-                JOptionPane.showMessageDialog(this, "Seleccione un paciente de la tabla para eliminar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+
+    private void btnNuevaCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCitaActionPerformed
+        try {
+            // Validar que el usuario haya seleccionado un paciente y un médico existendes del ComboBox
+            if (cobPaciente.getSelectedIndex() <= 0 || cobMedico.getSelectedIndex() <= 0) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un Paciente y un Médico válidos.", "Error de compatibilidad", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
-            String codigo = jTable2.getValueAt(filaSeleccionada, 0).toString();
-            int confirmacion = JOptionPane.showConfirmDialog(this, "¿Desea eliminar al paciente con código " + codigo + "?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+            // Extraer el motivo y el año de los campos de texto
+            String motivo = txtMotivo.getText().trim();
+            int ano = Integer.parseInt(txtAno.getText().trim());
 
-            if (confirmacion == JOptionPane.YES_OPTION) {
-                pacientes.removeIf(p -> p.esCodigo(codigo));
-                guardarMedicosOPacientes();
-                llenarTablaPacientes();
-                actualizarComboBoxes();
-                JOptionPane.showMessageDialog(this, "Paciente eliminado correctamente.");
+            // Validación de campos vacios
+            if (motivo.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ingrese el motivo.", "Campos Incompletos", JOptionPane.WARNING_MESSAGE);
+                return;
             }
+            
+            //se valida que el año este en un rengo correcto
+            if(!validarAno(ano)){
+                JOptionPane.showMessageDialog(this, "El año deve estar entre 1800 a 3000");
+                return;
+            }
+            
+            // construcción de cadena de texto para la Fecha (DD/MM/AA) y la Hora (H:mm) desde los ComboBoxes
+            String fecha = obtenerFecha(ano);
+            String hora = obtenerHora();
+
+            // Extraer el código único (primer elemento antes del guion "-") de los desplegables
+            String codPaciente = cobPaciente.getSelectedItem().toString().split(" - ")[0];
+            String codMedico = cobMedico.getSelectedItem().toString().split(" - ")[0];
+
+            // Buscar los objetos completos en las listas en memoria
+            Paciente pacienteSel = buscarPaciente(codPaciente);
+            Medico medicoSel = buscarMedico(codMedico);
+
+            // Estado paciente inicial 
+            String estado = "Pendiente";
+
+            // Instanciar la nueva cita 
+            Cita nuevaCita = new Cita(pacienteSel, medicoSel, fecha, motivo, estado, hora);
+            //guardarla en el ArrayList 
+            citas.add(nuevaCita);
+            //Serializarla 
+            guardarCitas();
+
+            // Limpiart campos y acutalizar tabla 
+            limpiarCamposCita();
+            llenarTablaCitas();
+
+            // Mostrar mensaje de exito
+            JOptionPane.showMessageDialog(this, "Cita programada exitosamente con estado Pendiente.");
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error al programar la cita valide los campos");
         }
-    
+    }//GEN-LAST:event_btnNuevaCitaActionPerformed
+
     //EVENTOS PARA BOTONES
     private void btnRegistrarMedicoActionPerformed(java.awt.event.ActionEvent evt) {
         String codigo = txtCodigoMedico.getText().trim();
@@ -1320,7 +1217,7 @@ public class FormClinica extends javax.swing.JFrame {
         }
 
         for (Medico m : medicos) {
-            if (m.getCodigo().equalsIgnoreCase(codigo)) {
+            if (m.esCodigo(codigo)) {
                 JOptionPane.showMessageDialog(this, "Ya existe un médico registrado con el código: " + codigo, "Código Duplicado", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -1386,6 +1283,8 @@ public class FormClinica extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Credenciales del médico actualizadas correctamente.");
     }
     
+    //=============================== REGIONES ===============================================
+    //========================================================================================
     //#Region guardar archivos
     
     private void guardarMedicosOPacientes(){
@@ -1527,7 +1426,18 @@ public class FormClinica extends javax.swing.JFrame {
         txtTelefonoMedico.setText("");
         txtEspecialidad.setText("");
     }
+    
+    private void limpiarCamposPaciente(){
+        //Setear campos
+        txtCodigoPaciente.setText("");
+        txtNombre.setText("");
+        txtDpi.setText("");
+        txtTelefono.setText("");
+    }
     //EndRegion
+    
+    //#Region llenarTablas
+    
     //método para refresacar la tabla
     private void llenarTablaCitas(){
         //Define la estructura en columnas
@@ -1549,6 +1459,154 @@ public class FormClinica extends javax.swing.JFrame {
         tbCitas.setModel(model);
     }
     
+    //Método para mostrar datos en tabla
+    private void llenarTablaPacientes(){
+    javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(
+            new String[]{"Código", "Nombre", "DPI", "Teléfono"}, 0
+        );
+        for (Paciente p : pacientes) {
+            model.addRow(new Object[]{p.getCodigo(), p.getNombre(), p.getDpi(), p.getTelefono()});
+        }
+        jTable2.setModel(model);
+    }
+    
+    //Método para mostrar datos en tabla
+    private void llenartablalMedicos(){
+        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(
+        new String[]{"Código", "Nombre", "DPI", "Teléfono", "Especialidad"}, 0
+        );
+        
+        for (Medico m : medicos) {
+            model.addRow(new Object[]{m.getCodigo(), m.getNombre(), m.getDpi(), m.getTelefono(), m.getEspecialidad()});
+        }
+        tbMedicos.setModel(model);
+    }
+    //EndRegion
+    
+    //#Region actualizar ComboBoxes
+    private void actualizarComboBoxes(){
+        cobPaciente.removeAllItems();
+        cobPaciente.addItem("-- Seleccione un Paciente --");
+        for (Paciente p : pacientes) {
+            cobPaciente.addItem(p.getCodigo() + " - " + p.getNombre());
+        }
+
+        cobMedico.removeAllItems();
+        cobMedico.addItem("-- Seleccione un Medico --");
+        cobModificarMedico.removeAllItems();
+        cobModificarMedico.addItem("-- Seleccione un Medico --");
+
+        for (Medico m : medicos) {
+            String item = m.getCodigo() + " - " + m.getNombre();
+            cobMedico.addItem(item);
+            cobModificarMedico.addItem(item);
+        }
+    }
+    //EndRegion
+    
+    //#Region buscar
+    
+    private Paciente buscarPaciente(String codPaciente){
+        for (Paciente p : pacientes) {
+            if (p.esCodigo(codPaciente)) {
+                return p;
+            }
+        }
+        return null;
+    }
+    
+    private Medico buscarMedico(String codMedico){
+        for (Medico m : medicos) {
+            if (m.esCodigo(codMedico)) {
+                return m;
+            }
+        }
+        return null;       
+    }
+    
+    //Método para buscar Paciente por Códgio o DPI
+    /*private void buscarPaciente(String criterio) {
+        if (criterio.isEmpty()) {
+            llenarTablaPacientes();
+            return;
+        }
+        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(
+            new String[]{"Código", "Nombre", "DPI", "Teléfono"}, 0
+        );
+        for (Paciente p : pacientes) {
+            if (p.getCodigo().equalsIgnoreCase(criterio) || p.getDpi().equalsIgnoreCase(criterio) || p.getNombre().toLowerCase().contains(criterio.toLowerCase())) {
+                model.addRow(new Object[]{p.getCodigo(), p.getNombre(), p.getDpi(), p.getTelefono()});
+            }
+        }
+        jTable2.setModel(model);
+    } */  
+    //EndRegion
+    
+    //#Region modificar
+    
+    //Modificar paciente
+    private void modificarPaciente(String codigo) {
+        for (Paciente p : pacientes) {
+            if (p.esCodigo(codigo)) {
+                if (!txtNombre.getText().trim().isEmpty()) p.setNombre(txtNombre.getText().trim());
+                if (!txtDpi.getText().trim().isEmpty()) p.setDpi(txtDpi.getText().trim());
+                if (!txtTelefono.getText().trim().isEmpty()) p.setTelefono(txtTelefono.getText().trim());
+                break;
+            }
+        }
+        guardarMedicosOPacientes();
+        llenarTablaPacientes();
+        actualizarComboBoxes();
+        limpiarCamposPaciente();
+        JOptionPane.showMessageDialog(this, "Paciente actualizado correctamente.");
+    }     
+    //EndRegion
+       
+    //#Region eliminar
+    
+    // Método para eliminar paciente
+    private void eliminarPaciente() {
+        int filaSeleccionada = jTable2.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un paciente de la tabla para eliminar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String codigo = jTable2.getValueAt(filaSeleccionada, 0).toString();
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Desea eliminar al paciente con código " + codigo + "?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            pacientes.removeIf(p -> p.esCodigo(codigo));
+            guardarMedicosOPacientes();
+            llenarTablaPacientes();
+            actualizarComboBoxes();
+            JOptionPane.showMessageDialog(this, "Paciente eliminado correctamente.");
+        }
+    }
+    //EndRegion
+    
+    //#Region validar fecha
+    private boolean validarAno(int ano){
+        return (ano > 1800 && ano < 3000);
+    }
+    //EndRegion
+    
+    //#Region constuir fecha y hora
+    private String obtenerFecha(int ano){
+        String dia = cobDia.getSelectedItem().toString();
+        String mes = cobMes.getSelectedItem().toString();      
+        
+        return dia + "/" + mes + "/" + ano;
+    }
+    
+    private String obtenerHora(){
+        String hora = cobHora.getSelectedItem().toString();
+        String minutos = cobMinuto.getSelectedItem().toString();
+        
+        return hora + ":" + minutos; 
+    }
+    //EndRegion
+
     
     /**
      * @param args the command line arguments
