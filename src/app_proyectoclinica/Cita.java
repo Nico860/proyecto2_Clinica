@@ -34,10 +34,7 @@ public class Cita implements Serializable{
     //Compara el estado en la base de datos con el ingresado
     public boolean esEstado(String estado){
         //devuelve true si el estado es el mismo
-        if(this.estado != estado)
-            return false;
-        
-        return true;
+        return this.estado.equalsIgnoreCase(estado);
     }
     
     //Compara que el atributo fecha no sea null y compara con una recibida por parámetro

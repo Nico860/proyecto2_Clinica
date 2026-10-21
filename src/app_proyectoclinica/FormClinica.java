@@ -73,6 +73,7 @@ public class FormClinica extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Estado = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
@@ -118,9 +119,6 @@ public class FormClinica extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        rbtnPendiente = new javax.swing.JRadioButton();
-        rbtnAtendida = new javax.swing.JRadioButton();
-        rbtnCancelada = new javax.swing.JRadioButton();
         btnNuevaCita = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         cobBuscarCita = new javax.swing.JComboBox<>();
@@ -131,6 +129,10 @@ public class FormClinica extends javax.swing.JFrame {
         cobMes = new javax.swing.JComboBox<>();
         cobHora = new javax.swing.JComboBox<>();
         cobMinuto = new javax.swing.JComboBox<>();
+        jPanel13 = new javax.swing.JPanel();
+        rbtnPendiente = new javax.swing.JRadioButton();
+        rbtnAtendida = new javax.swing.JRadioButton();
+        rbtnCancelada = new javax.swing.JRadioButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         JS = new javax.swing.JScrollPane();
@@ -404,12 +406,6 @@ public class FormClinica extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setText(":");
 
-        rbtnPendiente.setText("Pendiente");
-
-        rbtnAtendida.setText("Atendida");
-
-        rbtnCancelada.setText("Cancelada");
-
         btnNuevaCita.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnNuevaCita.setText("Nueva Cita");
         btnNuevaCita.addActionListener(this::btnNuevaCitaActionPerformed);
@@ -440,6 +436,35 @@ public class FormClinica extends javax.swing.JFrame {
         cobMinuto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cobMinuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
 
+        Estado.add(rbtnPendiente);
+        rbtnPendiente.setText("Pendiente");
+
+        Estado.add(rbtnAtendida);
+        rbtnAtendida.setText("Atendida");
+
+        Estado.add(rbtnCancelada);
+        rbtnCancelada.setText("Cancelada");
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addComponent(rbtnPendiente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbtnAtendida)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rbtnCancelada)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(rbtnPendiente)
+                .addComponent(rbtnAtendida)
+                .addComponent(rbtnCancelada))
+        );
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -465,18 +490,12 @@ public class FormClinica extends javax.swing.JFrame {
                                 .addComponent(txtAno, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(42, 42, 42))
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                                .addGap(19, 19, 19)
                                 .addComponent(jLabel8)
-                                .addGap(60, 60, 60)
+                                .addGap(59, 59, 59)
                                 .addComponent(jLabel9)
                                 .addGap(57, 57, 57)
-                                .addComponent(jLabel12))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                                .addComponent(rbtnPendiente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rbtnAtendida)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rbtnCancelada)
+                                .addComponent(jLabel12)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(67, 67, 67))
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -487,12 +506,6 @@ public class FormClinica extends javax.swing.JFrame {
                                 .addComponent(jLabel13)
                                 .addGap(68, 68, 68)
                                 .addComponent(jLabel14))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(btnNuevaCita)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnGuardarCita)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnBuscarCita))
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cobPaciente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -509,8 +522,15 @@ public class FormClinica extends javax.swing.JFrame {
                             .addComponent(jLabel16)
                             .addComponent(cobMedico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtMotivo)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator1))
+                            .addComponent(jSeparator2)
+                            .addComponent(jSeparator1)
+                            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(btnNuevaCita)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnGuardarCita)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnBuscarCita)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel6Layout.setVerticalGroup(
@@ -560,22 +580,19 @@ public class FormClinica extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbtnPendiente)
-                    .addComponent(rbtnAtendida)
-                    .addComponent(rbtnCancelada))
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cobBuscarCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(3, 3, 3)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevaCita)
                     .addComponent(btnGuardarCita)
                     .addComponent(btnBuscarCita))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 6, 302, -1));
@@ -612,13 +629,13 @@ public class FormClinica extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel17)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(JS, javax.swing.GroupLayout.DEFAULT_SIZE, 741, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel17)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -627,7 +644,7 @@ public class FormClinica extends javax.swing.JFrame {
                 .addComponent(jLabel17)
                 .addGap(18, 18, 18)
                 .addComponent(JS, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 6, -1, 586));
@@ -993,7 +1010,36 @@ public class FormClinica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnGuardarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCitaActionPerformed
-
+        //se obtiene la fila seleccionada
+        int filaSeleccionada = tbMedicos.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una cita de la tabla para actualizar.");
+            return;
+        }
+        
+        //se extrae el objeto de la lista
+        Cita cita = citas.get(filaSeleccionada);
+        
+        //si el estado es pendiente y el radio button seleccionado es pendiente no se realiza el cambio
+        if(rbtnPendiente.isSelected() && cita.esEstado("pendiente")) return;
+        
+        //para verificar el cambio de estado
+        boolean verificacion;
+        
+        //se cambia el estado de la cita dependiendo del radio button seleccionado
+        if(rbtnAtendida.isSelected()){
+            verificacion = cita.cambiarEstado("atendida");
+        }else{
+            verificacion = cita.cambiarEstado("cancelada");
+        }
+        
+        //se valida que el cambio fue exitoso
+        if(!verificacion){
+            JOptionPane.showMessageDialog(this, "No se pudo realizar el cambio de estado de la cita");
+            return;
+        }
+        
+        JOptionPane.showMessageDialog(this, "El cambio de estado fue exitoso");
     }//GEN-LAST:event_btnGuardarCitaActionPerformed
 
     private void fieldTxtPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldTxtPacienteActionPerformed
@@ -1366,7 +1412,9 @@ public class FormClinica extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar el archivo de pacentes y medicos: " + e.getMessage());
         }
         
-        //se refresca la vista
+        //se refrescan las vistas
+        llenarTablaPacientes();
+        llenartablalMedicos();
     }
     
     private void cargarCitas(){
@@ -1386,7 +1434,7 @@ public class FormClinica extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar las citas: " + e.getMessage());
         }
         //se refresca la vista
-        
+        llenarTablaCitas();
     }
     
     private void cargarAtenciones(){
@@ -1634,6 +1682,7 @@ public class FormClinica extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup Estado;
     private javax.swing.JScrollPane JS;
     private javax.swing.JScrollPane JS2;
     private javax.swing.JButton btnActualizarCredencialesMedico;
@@ -1699,6 +1748,7 @@ public class FormClinica extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
