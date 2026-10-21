@@ -4,6 +4,7 @@
  */
 package app_proyectoclinica;
 
+import com.sun.java.accessibility.util.AWTEventMonitor;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -50,9 +51,14 @@ public class FormClinica extends javax.swing.JFrame {
         cargarCitas();
         cargarAtenciones();
         
+        //Llenar los combo box (pacientes y médicos) y la tabla de atenciones al iniciar
+        actualizarComboBoxes();
+        mostrarHistorial(null);
+        
         //Enlazar eventos de botones 
-        btnBuscarMedico.addActionListener(this::btnBuscarMedicoActionPerformed);
-        btnBuscarCita.addActionListener(this::btnBuscarCitaActionPerformed);
+        //(btnBuscarMedico y btnBuscarCita ya se enlazan en initComponents)
+        btnRegistrarAtencion.addActionListener(this::btnRegistrarAtencionActionPerformed);
+        txtBuscarHistorial.addActionListener(this::btnBuscarHistorialActionPerformed);
         btnRegistrarMedico.addActionListener(this::btnRegistrarMedicoActionPerformed);
         btnActualizarCredencialesMedico.addActionListener(this::btnActualizarCredencialesMedicoActionPerformed);
     }
@@ -190,6 +196,7 @@ public class FormClinica extends javax.swing.JFrame {
 
         cboPacientesAtenciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cboPacientesAtenciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione Paciente--" }));
+        cboPacientesAtenciones.addActionListener(this::cboPacientesAtencionesActionPerformed);
 
         jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel33.setText("Diagnostico");
@@ -1005,35 +1012,41 @@ public class FormClinica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnGuardarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCitaActionPerformed
-        //se obtiene la fila seleccionada
-        int filaSeleccionada = tbMedicos.getSelectedRow();
-        if (filaSeleccionada == -1) {
+        //RF-05: cambio de estado de una cita (atendida o cancelada)
+        //se obtiene la cita seleccionada en la tabla de citas
+        Cita cita = obtenerCitaSeleccionada();
+        if (cita == null) {
             JOptionPane.showMessageDialog(this, "Seleccione una cita de la tabla para actualizar.");
             return;
         }
         
-        //se extrae el objeto de la lista
-        Cita cita = citas.get(filaSeleccionada);
-        
-        //si el estado es pendiente y el radio button seleccionado es pendiente no se realiza el cambio
-        if(rbtnPendiente.isSelected() && cita.esEstado("pendiente")) return;
-        
-        //para verificar el cambio de estado
-        boolean verificacion;
-        
-        //se cambia el estado de la cita dependiendo del radio button seleccionado
-        if(rbtnAtendida.isSelected()){
-            verificacion = cita.cambiarEstado("atendida");
-        }else{
-            verificacion = cita.cambiarEstado("cancelada");
+        //se determina el nuevo estado según el radio button seleccionado
+        String nuevoEstado;
+        if (rbtnAtendida.isSelected()) {
+            nuevoEstado = "atendida";
+        } else if (rbtnCancelada.isSelected()) {
+            nuevoEstado = "cancelada";
+        } else {
+            nuevoEstado = "pendiente";
         }
         
-        //se valida que el cambio fue exitoso
-        if(!verificacion){
-            JOptionPane.showMessageDialog(this, "No se pudo realizar el cambio de estado de la cita");
+        //si el estado es el mismo no hay nada que cambiar
+        if (cita.esEstado(nuevoEstado)) {
+            JOptionPane.showMessageDialog(this, "La cita ya se encuentra en estado " + nuevoEstado + ".");
             return;
         }
         
+        //regla de dominio: una cita atendida o cancelada no puede modificarse
+        if (!cita.cambiarEstado(nuevoEstado)) {
+            JOptionPane.showMessageDialog(this,
+                "No se pudo realizar el cambio: una cita " + cita.getEstado().toLowerCase() + " no puede modificarse.",
+                "Cambio no permitido", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        //se guarda y se refresca la tabla
+        guardarCitas();
+        llenarTablaCitas();
         JOptionPane.showMessageDialog(this, "El cambio de estado fue exitoso");
     }//GEN-LAST:event_btnGuardarCitaActionPerformed
 
@@ -1131,17 +1144,35 @@ public class FormClinica extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarMedicoActionPerformed
 
     private void btnBuscarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarCitaActionPerformed
+        // Lee el filtro seleccionado en cobBuscarCita ("Paciente", "Médico", "Fecha" o "Estado")
+        String filtro = cobBuscarCita.getSelectedItem().toString();
+        
+        // RF-08: si se busca por fecha, se propone por defecto la fecha actual
+        String sugerido = filtro.equals("Fecha") ? fechaActual() : "";
+        
         // Solicita el término de búsqueda mediante un cuadro emergente
-        String criterio = JOptionPane.showInputDialog(this, "Ingrese el término a buscar:", "Buscar Citas", JOptionPane.QUESTION_MESSAGE);
+        Object entrada = JOptionPane.showInputDialog(this, "Ingrese el término a buscar:", "Buscar Citas",
+                JOptionPane.QUESTION_MESSAGE, null, null, sugerido);
+        String criterio = (entrada == null) ? null : entrada.toString();
 
-        // Si cancela o deja vacío, restablece la tabla con todos los datos
-        if (criterio == null || criterio.trim().isEmpty()) {
+        // Si cancela, restablece la tabla con todos los datos
+        if (criterio == null) {
             llenarTablaCitas();
             return;
         }
-
-        // Lee el filtro seleccionado en cobBuscarCita ("Paciente", "Médico", "Fecha" o "Estado")
-        String filtro = cobBuscarCita.getSelectedItem().toString();
+        
+        // Si lo deja vacío: en Fecha se usa la fecha actual, en los demás se restablece la tabla
+        if (criterio.trim().isEmpty()) {
+            if (filtro.equals("Fecha")) {
+                criterio = fechaActual();
+            } else {
+                llenarTablaCitas();
+                return;
+            }
+        }
+        
+        // Se normaliza la fecha escrita (por ejemplo 05/03/2026 -> 5/3/2026)
+        if (filtro.equals("Fecha")) criterio = normalizarFecha(criterio);
         javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(
             new String[]{"Hora", "Paciente", "Médico", "Motivo", "Estado", "Fecha"}, 0
         );
@@ -1184,6 +1215,10 @@ public class FormClinica extends javax.swing.JFrame {
             }
         }
         tbCitas.setModel(model);
+        
+        if (filtro.equals("Fecha") && model.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "No hay citas registradas para la fecha " + criterio + ".");
+        }
     }//GEN-LAST:event_btnBuscarCitaActionPerformed
 
     private void btnNuevaCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCitaActionPerformed
@@ -1277,7 +1312,80 @@ public class FormClinica extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEliminarMedicoActionPerformed
 
+    private void cboPacientesAtencionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboPacientesAtencionesActionPerformed
+        //Los pacientes se cargan en actualizarComboBoxes(); aquí no se hace nada
+        //(antes se agregaban pacientes duplicados cada vez que se elegía uno)
+    }//GEN-LAST:event_cboPacientesAtencionesActionPerformed
+
     //EVENTOS PARA BOTONES
+
+    //RF-06: registro de atención
+    private void btnRegistrarAtencionActionPerformed(java.awt.event.ActionEvent evt) {
+        //se valida que haya un paciente seleccionado
+        if (cboPacientesAtenciones.getSelectedIndex() <= 0) {
+            JOptionPane.showMessageDialog(this, "Seleccione un paciente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        String diagnostico = txtDiagnostico.getText().trim();
+        String textoCosto = txtCosto.getText().trim();
+        
+        if (diagnostico.isEmpty() || textoCosto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el diagnóstico y el costo.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        //se valida que el costo sea numérico y no negativo
+        double costo;
+        try {
+            costo = Double.parseDouble(textoCosto.replace(",", "."));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El costo debe ser un valor numérico.", "Costo inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (Double.isNaN(costo) || Double.isInfinite(costo) || costo < 0) {
+            JOptionPane.showMessageDialog(this, "El costo no puede ser negativo.", "Costo inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //se obtiene el paciente a partir del código del combo ("codigo - nombre")
+        String codPaciente = cboPacientesAtenciones.getSelectedItem().toString().split(" - ")[0];
+        Paciente paciente = buscarPaciente(codPaciente);
+        if (paciente == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró el paciente seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //se crea la atención con la fecha actual y se asocia al paciente
+        Atencion atencion = new Atencion(paciente.getCodigo(), fechaActual(), diagnostico, costo);
+        paciente.getHistorialAtenciones().agregarAtencion(atencion);
+        atenciones.add(atencion);
+        guardarAtenciones();
+        
+        //se limpian los campos y se refresca la tabla
+        txtDiagnostico.setText("");
+        txtCosto.setText("");
+        cboPacientesAtenciones.setSelectedIndex(0);
+        mostrarHistorial(pacienteFiltrado());
+        
+        JOptionPane.showMessageDialog(this, "Atención registrada exitosamente.");
+    }
+    
+    //RF-07: historial de atenciones del paciente seleccionado
+    private void btnBuscarHistorialActionPerformed(java.awt.event.ActionEvent evt) {
+        if (cobFiltrarPaciente.getSelectedIndex() <= 0) {
+            //sin paciente seleccionado se muestran todas las atenciones
+            mostrarHistorial(null);
+            return;
+        }
+        Paciente paciente = pacienteFiltrado();
+        if (paciente == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró el paciente seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        mostrarHistorial(paciente);
+    }
+
     private void btnRegistrarMedicoActionPerformed(java.awt.event.ActionEvent evt) {
         String codigo = txtCodigoMedico.getText().trim();
         String nombre = txtNombreMedico.getText().trim();
@@ -1458,8 +1566,13 @@ public class FormClinica extends javax.swing.JFrame {
         } catch (IOException | ClassNotFoundException e) {
             JOptionPane.showMessageDialog(this, "Ocurrio un error al cargar el archivo de atenciones: " + e.getMessage());
         }
+        //se reconstruye el historial de cada paciente
+        for (Atencion a : atenciones) {
+            Paciente p = buscarPaciente(a.getCodigoPaciente());
+            if (p != null) p.getHistorialAtenciones().agregarAtencion(a);
+        }
         //se refresca la vista
-        
+        mostrarHistorial(null);
     }
     //EndRegion
     
@@ -1540,8 +1653,18 @@ public class FormClinica extends javax.swing.JFrame {
     private void actualizarComboBoxes(){
         cobPaciente.removeAllItems();
         cobPaciente.addItem("-- Seleccione un Paciente --");
+        
+        //combos de la pestaña Consultas
+        cboPacientesAtenciones.removeAllItems();
+        cboPacientesAtenciones.addItem("--Seleccione Paciente--");
+        cobFiltrarPaciente.removeAllItems();
+        cobFiltrarPaciente.addItem("--Seleccione Paciente--");
+        
         for (Paciente p : pacientes) {
-            cobPaciente.addItem(p.getCodigo() + " - " + p.getNombre());
+            String item = p.getCodigo() + " - " + p.getNombre();
+            cobPaciente.addItem(item);
+            cboPacientesAtenciones.addItem(item);
+            cobFiltrarPaciente.addItem(item);
         }
 
         cobMedico.removeAllItems();
@@ -1708,6 +1831,76 @@ public class FormClinica extends javax.swing.JFrame {
         minutos += Integer.parseInt(s[1]);
         
         return minutos;
+    }
+    //EndRegion
+    
+    //#Region ayudas citas y atenciones
+    
+    //Devuelve la fecha actual con el mismo formato que usan las citas (d/M/yyyy)
+    private String fechaActual(){
+        java.time.LocalDate hoy = java.time.LocalDate.now();
+        return hoy.getDayOfMonth() + "/" + hoy.getMonthValue() + "/" + hoy.getYear();
+    }
+    
+    //Convierte una fecha escrita como 05/03/2026 o 5-3-2026 al formato d/M/yyyy
+    private String normalizarFecha(String fecha){
+        try {
+            String[] partes = fecha.trim().split("[/\\-]");
+            if (partes.length == 3) {
+                return Integer.parseInt(partes[0].trim()) + "/" + Integer.parseInt(partes[1].trim()) + "/" + Integer.parseInt(partes[2].trim());
+            }
+        } catch (NumberFormatException e) {
+            //se deja el texto original
+        }
+        return fecha.trim();
+    }
+    
+    //Obtiene la cita que corresponde a la fila seleccionada en tbCitas
+    //(funciona también cuando la tabla está filtrada por una búsqueda)
+    private Cita obtenerCitaSeleccionada(){
+        int fila = tbCitas.getSelectedRow();
+        if (fila == -1) return null;
+        
+        String hora = String.valueOf(tbCitas.getValueAt(fila, 0));
+        String paciente = String.valueOf(tbCitas.getValueAt(fila, 1));
+        String medico = String.valueOf(tbCitas.getValueAt(fila, 2));
+        String motivo = String.valueOf(tbCitas.getValueAt(fila, 3));
+        String fecha = String.valueOf(tbCitas.getValueAt(fila, 5));
+        
+        for (Cita c : citas) {
+            String nomPaciente = (c.getPaciente() != null) ? c.getPaciente().getNombre() : "N/A";
+            String nomMedico = (c.getMedico() != null) ? c.getMedico().getNombre() : "N/A";
+            if (c.getHora().equals(hora) && nomPaciente.equals(paciente) && nomMedico.equals(medico)
+                    && c.getMotivo().equals(motivo) && c.getFecha().equals(fecha)) {
+                return c;
+            }
+        }
+        return null;
+    }
+    
+    //Paciente elegido en el combo de filtro (null si no hay ninguno)
+    private Paciente pacienteFiltrado(){
+        if (cobFiltrarPaciente.getSelectedIndex() <= 0) return null;
+        return buscarPaciente(cobFiltrarPaciente.getSelectedItem().toString().split(" - ")[0]);
+    }
+    
+    //RF-07: muestra las atenciones de un paciente (o todas si es null) y el total acumulado
+    private void mostrarHistorial(Paciente paciente){
+        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(
+            new String[]{"Paciente", "Fecha", "Diagnostico", "Costo"}, 0
+        );
+        
+        double total = 0.0;
+        for (Atencion a : atenciones) {
+            if (paciente != null && !paciente.esCodigo(a.getCodigoPaciente())) continue;
+            
+            Paciente p = buscarPaciente(a.getCodigoPaciente());
+            String nombre = (p != null) ? p.getNombre() : a.getCodigoPaciente();
+            model.addRow(new Object[]{nombre, a.getFecha(), a.getDiagnostico(), String.format(java.util.Locale.US, "%.2f", a.getCosto())});
+            total += a.getCosto();
+        }
+        tbHistorialAtenciones.setModel(model);
+        lblTotalCostos.setText(String.format(java.util.Locale.US, "Q %.2f", total));
     }
     //EndRegion
     

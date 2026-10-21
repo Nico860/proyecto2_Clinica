@@ -10,7 +10,8 @@ import java.util.ArrayList;
  *
  * @author CHAPTOPS TACTIC
  */
-public class HistorialAtenciones {
+public class HistorialAtenciones implements java.io.Serializable {
+    private static final long serialVersionUID = 1L;
     //se definen los atributos
     private ArrayList<Atencion> atenciones = new ArrayList<>();
     
