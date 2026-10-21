@@ -54,7 +54,6 @@ public class FormClinica extends javax.swing.JFrame {
         btnBuscarMedico.addActionListener(this::btnBuscarMedicoActionPerformed);
         btnBuscarCita.addActionListener(this::btnBuscarCitaActionPerformed);
         btnRegistrarMedico.addActionListener(this::btnRegistrarMedicoActionPerformed);
-        btnEliminarMedico.addActionListener(this::btnEliminarMedicoActionPerformed);
         btnActualizarCredencialesMedico.addActionListener(this::btnActualizarCredencialesMedicoActionPerformed);
     }
 
@@ -935,6 +934,7 @@ public class FormClinica extends javax.swing.JFrame {
 
         btnEliminarMedico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnEliminarMedico.setText("Eliminar");
+        btnEliminarMedico.addActionListener(this::btnEliminarMedicoActionPerformed);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -1150,26 +1150,26 @@ public class FormClinica extends javax.swing.JFrame {
             boolean coincide = false;
 
             switch (filtro) {
-                case "Paciente":
+                case "Paciente" -> {
                     if (c.getPaciente() != null && c.getPaciente().getNombre().toLowerCase().contains(criterio.toLowerCase())) {
                         coincide = true;
                     }
-                    break;
-                case "Médico":
+                }
+                case "Médico" -> {
                     if (c.getMedico() != null && c.getMedico().getNombre().toLowerCase().contains(criterio.toLowerCase())) {
                         coincide = true;
                     }
-                    break;
-                case "Fecha":
+                }
+                case "Fecha" -> {
                     if (c.esFecha(criterio.trim())) {
                         coincide = true;
                     }
-                    break;
-                case "Estado":
+                }
+                case "Estado" -> {
                     if (c.esEstado(criterio.trim())) {
                         coincide = true;
                     }
-                    break;
+                }
             }
 
             if (coincide) {
@@ -1250,6 +1250,33 @@ public class FormClinica extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnNuevaCitaActionPerformed
 
+    private void btnEliminarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarMedicoActionPerformed
+        try {
+            int filaSeleccionada = tbMedicos.getSelectedRow();
+            if (filaSeleccionada == -1) {
+                JOptionPane.showMessageDialog(this, "Seleccione un médico de la tabla para eliminar.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            String codigo = tbMedicos.getValueAt(filaSeleccionada, 0).toString();
+        
+            int confirmacion = JOptionPane.showConfirmDialog(this, 
+                "¿Está seguro de eliminar al médico con código " + codigo + "?", 
+                "Confirmar Eliminación", 
+                JOptionPane.YES_NO_OPTION);
+
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                medicos.removeIf(m -> m.getCodigo().equalsIgnoreCase(codigo));
+                guardarMedicosOPacientes();
+                llenartablalMedicos();
+                actualizarComboBoxes();
+                JOptionPane.showMessageDialog(this, "Médico eliminado correctamente.");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error al eliminar el Medico");
+        }
+    }//GEN-LAST:event_btnEliminarMedicoActionPerformed
+
     //EVENTOS PARA BOTONES
     private void btnRegistrarMedicoActionPerformed(java.awt.event.ActionEvent evt) {
         String codigo = txtCodigoMedico.getText().trim();
@@ -1279,29 +1306,6 @@ public class FormClinica extends javax.swing.JFrame {
         actualizarComboBoxes();
 
         JOptionPane.showMessageDialog(this, "Médico registrado exitosamente.");
-    }
-
-    private void btnEliminarMedicoActionPerformed(java.awt.event.ActionEvent evt) {
-        int filaSeleccionada = tbMedicos.getSelectedRow();
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione un médico de la tabla para eliminar.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        String codigo = tbMedicos.getValueAt(filaSeleccionada, 0).toString();
-        
-        int confirmacion = JOptionPane.showConfirmDialog(this, 
-            "¿Está seguro de eliminar al médico con código " + codigo + "?", 
-            "Confirmar Eliminación", 
-            JOptionPane.YES_NO_OPTION);
-
-        if (confirmacion == JOptionPane.YES_OPTION) {
-            medicos.removeIf(m -> m.getCodigo().equalsIgnoreCase(codigo));
-            guardarMedicosOPacientes();
-            llenartablalMedicos();
-            actualizarComboBoxes();
-            JOptionPane.showMessageDialog(this, "Médico eliminado correctamente.");
-        }
     }
 
     private void btnActualizarCredencialesMedicoActionPerformed(java.awt.event.ActionEvent evt) {
