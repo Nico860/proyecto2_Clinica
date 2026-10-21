@@ -45,16 +45,10 @@ public class FormClinica extends javax.swing.JFrame {
     public FormClinica() {
         initComponents();
         
-        //Importar datos del documento plano personas.txt
+        //Importar datos de los docuemntos txt y dat
         cargarMedicosYPacientes();
         cargarCitas();
         cargarAtenciones();
-        
-        //Mostrar lalista en el JTable
-        llenarTablaPacientes();
-        llenartablalMedicos();
-        llenarTablaCitas();
-        actualizarComboBoxes();
         
         //Enlazar eventos de botones 
         btnBuscarMedico.addActionListener(this::btnBuscarMedicoActionPerformed);
@@ -437,6 +431,7 @@ public class FormClinica extends javax.swing.JFrame {
         cobMinuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
 
         Estado.add(rbtnPendiente);
+        rbtnPendiente.setSelected(true);
         rbtnPendiente.setText("Pendiente");
 
         Estado.add(rbtnAtendida);
@@ -1209,7 +1204,7 @@ public class FormClinica extends javax.swing.JFrame {
                 return;
             }
             
-            //se valida que el año este en un rengo correcto
+            //se valida que el año este en un rango correcto
             if(!validarAno(ano)){
                 JOptionPane.showMessageDialog(this, "El año deve estar entre 1800 a 3000");
                 return;
@@ -1218,7 +1213,7 @@ public class FormClinica extends javax.swing.JFrame {
             // construcción de cadena de texto para la Fecha (DD/MM/AA) y la Hora (H:mm) desde los ComboBoxes
             String fecha = obtenerFecha(ano);
             String hora = obtenerHora();
-
+            
             // Extraer el código único (primer elemento antes del guion "-") de los desplegables
             String codPaciente = cobPaciente.getSelectedItem().toString().split(" - ")[0];
             String codMedico = cobMedico.getSelectedItem().toString().split(" - ")[0];
@@ -1226,6 +1221,12 @@ public class FormClinica extends javax.swing.JFrame {
             // Buscar los objetos completos en las listas en memoria
             Paciente pacienteSel = buscarPaciente(codPaciente);
             Medico medicoSel = buscarMedico(codMedico);
+            
+            //se valida que el medico este disponible esa fecha y a la misma hora
+            if(!medicoDisponible(fecha,hora, medicoSel)){
+                JOptionPane.showMessageDialog(this, "Seleccione un medico disponible, o cambie la hora de la cita");
+                return;
+            }
 
             // Estado paciente inicial 
             String estado = "Pendiente";
@@ -1655,6 +1656,56 @@ public class FormClinica extends javax.swing.JFrame {
     }
     //EndRegion
 
+    //#Region disponibilidad
+    private boolean medicoDisponible(String fecha, String hora, Medico medico){
+        //se filtran las citas correspondientes del medico, a la misma fecha y
+        //que esten pendientes
+        ArrayList<Cita> citasMedico = new ArrayList<>();
+        for (Cita cita : citas) {
+            if(cita.esMedico(medico) && cita.esFecha(fecha) && cita.esEstado("pendiente"))
+                citasMedico.add(cita);
+        }
+        
+        //se recorre la lista filtrada y se valida que la hora no coincida
+        //y que tambien no este entre esa hora, una hora despues y una hora antes 
+        for (Cita cita : citasMedico) {
+            if(cita.esHora(hora) || !disponibilidadIntervaloTiempo(cita.getHora(), hora))
+                return false;
+        }
+        
+        return true;
+    }
+    
+    //El metodo valida que la hora asignada no este entre 
+    //una hora antes o despues de la hora ocupado
+    private boolean disponibilidadIntervaloTiempo(String horaOcupado, String horaAsignada){
+        //se convierten ambas horas a minutos
+        int minutos1 = horaAMinutos(horaOcupado);
+        int minutos2 = horaAMinutos(horaAsignada);
+        
+        //si la hora en la cual se asigno esta entre la hora de ocupado y una hora despues
+        //se retorna que false ya que no esta disponible
+        if(minutos2 > minutos1 && minutos2 < (minutos1 + 59)) return false;
+        
+        //si la hora en la cual se asigno esta entre una hora antes de la
+        //cita agendada entonces retorna false ya que el tiempo de la consulta no es suficiente
+        return !(minutos2 < minutos1 && minutos2 > (minutos1 - 59));
+    }
+    //EndRegion
+    
+    //#Region convertir hora a minutos
+    private int horaAMinutos(String hora){
+        //se splitea la hora
+        String[] s = hora.split("\\:");
+        
+        //se convierte la hora a minutos
+        int minutos = Integer.parseInt(s[0]) * 60;
+        //se le suman los minutos de la hora
+        minutos += Integer.parseInt(s[1]);
+        
+        return minutos;
+    }
+    //EndRegion
     
     /**
      * @param args the command line arguments

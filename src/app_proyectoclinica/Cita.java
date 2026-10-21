@@ -55,6 +55,12 @@ public class Cita implements Serializable{
         return this.paciente != null && paciente != null && this.paciente.esCodigo(paciente.getCodigo());
     }
     
+    
+    public boolean esHora(String hora){
+        //si es la misma hora retorna true
+        return this.hora.equalsIgnoreCase(hora);
+    }
+    
     //Actualiza el estado de una cita a un nuevo estado
     public boolean cambiarEstado(String estado) {
         //Validación ¿ Cancelado o atendido?
