@@ -15,29 +15,24 @@ import java.util.ArrayList;
 public class Paciente extends Persona{
     private static final long serialVersionUID = 1L;
     
-    //Inicializar una lista de tipo atención
-    private ArrayList<Atencion> atenciones;
+    //Inicializar de un objeto para el registro de atenciones
+    private HistorialAtenciones historialAtenciones = new HistorialAtenciones();
     
     //Llamar al constructor de la clase padre persona
     public Paciente(String codigo, String nombre, String dpi, String telefono){
         super(codigo, nombre, dpi, telefono);
-        this.atenciones = new ArrayList<>();
-    }
-    //métodos para el registro de historial de atenciones
-    public ArrayList<Atencion> getAtenciones(){
-        return atenciones;
     }
     
-    //método para añadir un paciente
-    public void agregarAtencion(Atencion atencion){
-        this.atenciones.add(atencion);
+    //Devuelve el historial de atenciones 
+    public HistorialAtenciones getHistorialAtenciones(){
+        return historialAtenciones;
     }
     
     //MétodO para calcular los costos totales por antención
     public double calcularCostoTotalAtenciones(){
         //Acumulador 
         double total = 0.0;
-        for(Atencion a : atenciones){
+        for(Atencion a : historialAtenciones.getAtenciones()){
             total += a.getCosto();
         } return total;
     }
