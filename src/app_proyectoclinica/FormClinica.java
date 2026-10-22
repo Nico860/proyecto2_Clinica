@@ -192,43 +192,77 @@ public class FormClinica extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel1.setBackground(new java.awt.Color(68, 68, 68));
+        jPanel1.setForeground(new java.awt.Color(196, 25, 190));
 
+        jTabbedPane1.setBackground(new java.awt.Color(220, 230, 207));
+        jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
+        jTabbedPane1.setForeground(new java.awt.Color(110, 180, 10));
+        jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        jPanel5.setBackground(new java.awt.Color(111, 111, 111));
+        jPanel5.setForeground(new java.awt.Color(196, 25, 190));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel11.setBackground(new java.awt.Color(132, 220, 4));
+        jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
 
         jLabel31.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(111, 111, 111));
         jLabel31.setText("Registro de Atenciones");
 
         jLabel32.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(111, 111, 111));
         jLabel32.setText("Paciente");
 
+        cboPacientesAtenciones.setBackground(new java.awt.Color(220, 230, 207));
         cboPacientesAtenciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cboPacientesAtenciones.setForeground(new java.awt.Color(110, 180, 10));
         cboPacientesAtenciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione Paciente--" }));
         cboPacientesAtenciones.addActionListener(this::cboPacientesAtencionesActionPerformed);
 
         jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(111, 111, 111));
         jLabel33.setText("Diagnostico");
 
+        txtDiagnostico.setBackground(new java.awt.Color(220, 230, 207));
         txtDiagnostico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDiagnostico.setForeground(new java.awt.Color(110, 180, 10));
 
         jLabel34.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(111, 111, 111));
         jLabel34.setText("Costo");
 
+        txtCosto.setBackground(new java.awt.Color(220, 230, 207));
         txtCosto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCosto.setForeground(new java.awt.Color(110, 180, 10));
 
         jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(111, 111, 111));
         jLabel35.setText("Filtrar por Paciente");
 
-        btnRegistrarAtencion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnRegistrarAtencion.setBackground(new java.awt.Color(111, 111, 111));
+        btnRegistrarAtencion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegistrarAtencion.setForeground(new java.awt.Color(132, 220, 4));
         btnRegistrarAtencion.setText("Registrar");
         btnRegistrarAtencion.addActionListener(this::btnRegistrarAtencionActionPerformed);
 
+        jSeparator5.setBackground(new java.awt.Color(68, 68, 68));
+        jSeparator5.setForeground(new java.awt.Color(68, 68, 68));
+
+        jSeparator6.setBackground(new java.awt.Color(68, 68, 68));
+        jSeparator6.setForeground(new java.awt.Color(68, 68, 68));
+
+        cobFiltrarPaciente.setBackground(new java.awt.Color(220, 230, 207));
         cobFiltrarPaciente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cobFiltrarPaciente.setForeground(new java.awt.Color(110, 180, 10));
         cobFiltrarPaciente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione Paciente--" }));
 
-        txtBuscarHistorial.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jSeparator7.setForeground(new java.awt.Color(68, 68, 68));
+
+        txtBuscarHistorial.setBackground(new java.awt.Color(111, 111, 111));
+        txtBuscarHistorial.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtBuscarHistorial.setForeground(new java.awt.Color(132, 220, 4));
         txtBuscarHistorial.setText("Buscar");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -250,7 +284,7 @@ public class FormClinica extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCosto, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                            .addComponent(txtCosto, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                             .addComponent(jLabel34)
                             .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,7 +293,7 @@ public class FormClinica extends javax.swing.JFrame {
                                 .addComponent(txtDiagnostico)
                                 .addComponent(jSeparator6))
                             .addComponent(jLabel35)
-                            .addComponent(cobFiltrarPaciente, 0, 276, Short.MAX_VALUE)
+                            .addComponent(cobFiltrarPaciente, 0, 278, Short.MAX_VALUE)
                             .addComponent(jSeparator7))))
                 .addGap(24, 24, 24))
         );
@@ -294,13 +328,16 @@ public class FormClinica extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrarAtencion)
                     .addComponent(txtBuscarHistorial))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
-        jPanel5.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 320, 610));
+        jPanel5.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 320, 600));
 
-        jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel12.setBackground(new java.awt.Color(196, 252, 92));
+        jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
 
+        tbHistorialAtenciones.setBackground(new java.awt.Color(220, 230, 207));
+        tbHistorialAtenciones.setForeground(new java.awt.Color(110, 180, 10));
         tbHistorialAtenciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -320,14 +357,19 @@ public class FormClinica extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tbHistorialAtenciones.setSelectionBackground(new java.awt.Color(132, 220, 4));
+        tbHistorialAtenciones.setSelectionForeground(new java.awt.Color(68, 68, 68));
         jScrollPane2.setViewportView(tbHistorialAtenciones);
 
         jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(111, 111, 111));
         jLabel36.setText("Total de Costos: ");
 
         lblTotalCostos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTotalCostos.setForeground(new java.awt.Color(68, 68, 68));
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(111, 111, 111));
         jLabel41.setText("Registro de Atenciones");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -367,43 +409,58 @@ public class FormClinica extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Consultas", jPanel5);
 
+        jPanel2.setBackground(new java.awt.Color(111, 111, 111));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel6.setBackground(new java.awt.Color(132, 220, 4));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(111, 111, 111));
         jLabel1.setText("Gestión de Citas");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(111, 111, 111));
         jLabel2.setText("Paciente");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(111, 111, 111));
         jLabel3.setText("Medico");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(111, 111, 111));
         jLabel4.setText("Motivo");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(111, 111, 111));
         jLabel5.setText("Fecha");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(111, 111, 111));
         jLabel6.setText("Hora");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(111, 111, 111));
         jLabel7.setText("Estado");
 
+        cobPaciente.setBackground(new java.awt.Color(220, 230, 207));
         cobPaciente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cobPaciente.setForeground(new java.awt.Color(110, 180, 10));
         cobPaciente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Seleccione un Paciente --" }));
 
+        cobMedico.setBackground(new java.awt.Color(220, 230, 207));
         cobMedico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cobMedico.setForeground(new java.awt.Color(110, 180, 10));
         cobMedico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Seleccione un Medico --" }));
 
+        txtMotivo.setBackground(new java.awt.Color(220, 230, 207));
         txtMotivo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtMotivo.setForeground(new java.awt.Color(110, 180, 10));
 
-        jLabel8.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel8.setForeground(new java.awt.Color(68, 68, 68));
         jLabel8.setText("DD");
 
-        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel9.setForeground(new java.awt.Color(68, 68, 68));
         jLabel9.setText("MM");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -412,59 +469,83 @@ public class FormClinica extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("/");
 
+        txtAno.setBackground(new java.awt.Color(220, 230, 207));
         txtAno.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtAno.setForeground(new java.awt.Color(110, 180, 10));
         txtAno.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jLabel12.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel12.setForeground(new java.awt.Color(68, 68, 68));
         jLabel12.setText("AA");
 
-        jLabel13.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel13.setForeground(new java.awt.Color(68, 68, 68));
         jLabel13.setText("H");
 
-        jLabel14.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel14.setForeground(new java.awt.Color(68, 68, 68));
         jLabel14.setText("mm");
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setText(":");
 
-        btnNuevaCita.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnNuevaCita.setBackground(new java.awt.Color(111, 111, 111));
+        btnNuevaCita.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnNuevaCita.setForeground(new java.awt.Color(132, 220, 4));
         btnNuevaCita.setText("Nueva Cita");
         btnNuevaCita.addActionListener(this::btnNuevaCitaActionPerformed);
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(111, 111, 111));
         jLabel16.setText("Buscar Por");
 
+        cobBuscarCita.setBackground(new java.awt.Color(220, 230, 207));
         cobBuscarCita.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cobBuscarCita.setForeground(new java.awt.Color(110, 180, 10));
         cobBuscarCita.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Paciente", "Médico", "Fecha", "Estado" }));
 
-        btnBuscarCita.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBuscarCita.setBackground(new java.awt.Color(111, 111, 111));
+        btnBuscarCita.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBuscarCita.setForeground(new java.awt.Color(132, 220, 4));
         btnBuscarCita.setText("Buscar");
         btnBuscarCita.addActionListener(this::btnBuscarCitaActionPerformed);
 
-        btnGuardarCita.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGuardarCita.setBackground(new java.awt.Color(111, 111, 111));
+        btnGuardarCita.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGuardarCita.setForeground(new java.awt.Color(132, 220, 4));
         btnGuardarCita.setText("Guardar");
         btnGuardarCita.addActionListener(this::btnGuardarCitaActionPerformed);
 
+        cobDia.setBackground(new java.awt.Color(220, 230, 207));
         cobDia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cobDia.setForeground(new java.awt.Color(110, 180, 10));
         cobDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
+        cobMes.setBackground(new java.awt.Color(220, 230, 207));
         cobMes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cobMes.setForeground(new java.awt.Color(110, 180, 10));
         cobMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
+        cobHora.setBackground(new java.awt.Color(220, 230, 207));
         cobHora.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cobHora.setForeground(new java.awt.Color(110, 180, 10));
         cobHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" }));
 
+        cobMinuto.setBackground(new java.awt.Color(220, 230, 207));
         cobMinuto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cobMinuto.setForeground(new java.awt.Color(110, 180, 10));
         cobMinuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
 
+        jPanel13.setBackground(new java.awt.Color(132, 220, 4));
+
         Estado.add(rbtnPendiente);
+        rbtnPendiente.setForeground(new java.awt.Color(111, 111, 111));
         rbtnPendiente.setSelected(true);
         rbtnPendiente.setText("Pendiente");
 
         Estado.add(rbtnAtendida);
+        rbtnAtendida.setForeground(new java.awt.Color(111, 111, 111));
         rbtnAtendida.setText("Atendida");
 
         Estado.add(rbtnCancelada);
+        rbtnCancelada.setForeground(new java.awt.Color(111, 111, 111));
         rbtnCancelada.setText("Cancelada");
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -619,12 +700,16 @@ public class FormClinica extends javax.swing.JFrame {
 
         jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 6, 302, -1));
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel7.setBackground(new java.awt.Color(196, 252, 92));
+        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
         jPanel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(111, 111, 111));
         jLabel17.setText("Registro de Citas");
 
+        tbCitas.setBackground(new java.awt.Color(220, 230, 207));
+        tbCitas.setForeground(new java.awt.Color(110, 180, 10));
         tbCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -644,6 +729,8 @@ public class FormClinica extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tbCitas.setSelectionBackground(new java.awt.Color(132, 220, 4));
+        tbCitas.setSelectionForeground(new java.awt.Color(68, 68, 68));
         JS.setViewportView(tbCitas);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -673,55 +760,83 @@ public class FormClinica extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Citas", jPanel2);
 
+        jPanel3.setBackground(new java.awt.Color(111, 111, 111));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel8.setBackground(new java.awt.Color(132, 220, 4));
+        jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
+        jPanel8.setForeground(new java.awt.Color(110, 180, 10));
 
         jLabel18.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(111, 111, 111));
         jLabel18.setText("Código Paciente");
 
         jLabel19.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(111, 111, 111));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("Gestión de Pacientes");
 
         jLabel20.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(111, 111, 111));
         jLabel20.setText("Nombre");
 
         jLabel21.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(111, 111, 111));
         jLabel21.setText("DPI");
 
         jLabel22.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(111, 111, 111));
         jLabel22.setText("Teléfono");
 
+        txtCodigoPaciente.setBackground(new java.awt.Color(220, 230, 207));
         txtCodigoPaciente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCodigoPaciente.setForeground(new java.awt.Color(110, 180, 10));
 
+        txtDpi.setBackground(new java.awt.Color(220, 230, 207));
         txtDpi.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDpi.setForeground(new java.awt.Color(110, 180, 10));
 
+        txtTelefono.setBackground(new java.awt.Color(220, 230, 207));
         txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTelefono.setForeground(new java.awt.Color(110, 180, 10));
 
+        txtNombre.setBackground(new java.awt.Color(220, 230, 207));
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(110, 180, 10));
 
         fieldTxtPaciente.addActionListener(this::fieldTxtPacienteActionPerformed);
 
         jLabel37.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(111, 111, 111));
         jLabel37.setText("Buscar Por");
 
+        cobBuscarPaciente.setBackground(new java.awt.Color(220, 230, 207));
         cobBuscarPaciente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cobBuscarPaciente.setForeground(new java.awt.Color(110, 180, 10));
         cobBuscarPaciente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Nombre" }));
 
         jLabel38.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(111, 111, 111));
         jLabel38.setText("Modificar Paciente");
 
+        cobModificarPaciente.setBackground(new java.awt.Color(220, 230, 207));
         cobModificarPaciente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cobModificarPaciente.setForeground(new java.awt.Color(110, 180, 10));
         cobModificarPaciente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione un Paciente--" }));
 
-        btnActualizarCredencialesPaciente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnActualizarCredencialesPaciente.setBackground(new java.awt.Color(111, 111, 111));
+        btnActualizarCredencialesPaciente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnActualizarCredencialesPaciente.setForeground(new java.awt.Color(132, 220, 4));
         btnActualizarCredencialesPaciente.setText("Actualizar Credenciales");
 
-        btnBuscarPaciente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBuscarPaciente.setBackground(new java.awt.Color(111, 111, 111));
+        btnBuscarPaciente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBuscarPaciente.setForeground(new java.awt.Color(132, 220, 4));
         btnBuscarPaciente.setText("Buscar");
 
-        btnAgregarPaciente1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAgregarPaciente1.setBackground(new java.awt.Color(111, 111, 111));
+        btnAgregarPaciente1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAgregarPaciente1.setForeground(new java.awt.Color(132, 220, 4));
         btnAgregarPaciente1.setText("Agregar");
         btnAgregarPaciente1.addActionListener(this::btnAgregarPaciente1ActionPerformed);
 
@@ -756,7 +871,7 @@ public class FormClinica extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnBuscarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(5, 5, 5)))
-                        .addGap(0, 25, Short.MAX_VALUE))
+                        .addGap(0, 17, Short.MAX_VALUE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(fieldTxtPaciente)))
@@ -812,11 +927,16 @@ public class FormClinica extends javax.swing.JFrame {
 
         jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 600));
 
-        jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel14.setBackground(new java.awt.Color(196, 252, 92));
+        jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
+        jPanel14.setForeground(new java.awt.Color(110, 180, 10));
 
         jLabel23.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(111, 111, 111));
         jLabel23.setText("Registro de Pacientes");
 
+        tbPacientes.setBackground(new java.awt.Color(220, 230, 207));
+        tbPacientes.setForeground(new java.awt.Color(110, 180, 10));
         tbPacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -828,9 +948,13 @@ public class FormClinica extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbPacientes.setSelectionBackground(new java.awt.Color(132, 220, 4));
+        tbPacientes.setSelectionForeground(new java.awt.Color(68, 68, 68));
         jScrollPane1.setViewportView(tbPacientes);
 
-        btnEliminarPaciente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEliminarPaciente.setBackground(new java.awt.Color(111, 111, 111));
+        btnEliminarPaciente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEliminarPaciente.setForeground(new java.awt.Color(132, 220, 4));
         btnEliminarPaciente.setText("Eliminar");
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
@@ -865,58 +989,88 @@ public class FormClinica extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Pacientes", jPanel3);
 
+        jPanel4.setBackground(new java.awt.Color(111, 111, 111));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel9.setBackground(new java.awt.Color(132, 220, 4));
+        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(111, 111, 111));
         jLabel24.setText("Gestión de Medicos");
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(111, 111, 111));
         jLabel25.setText("Código");
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(111, 111, 111));
         jLabel26.setText("Nombre");
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(111, 111, 111));
         jLabel27.setText("DPI");
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(111, 111, 111));
         jLabel28.setText("Télefono");
 
+        txtDpiMedico.setBackground(new java.awt.Color(220, 230, 207));
         txtDpiMedico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDpiMedico.setForeground(new java.awt.Color(110, 180, 10));
 
-        btnRegistrarMedico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnRegistrarMedico.setBackground(new java.awt.Color(111, 111, 111));
+        btnRegistrarMedico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegistrarMedico.setForeground(new java.awt.Color(132, 220, 4));
         btnRegistrarMedico.setText("Registrar");
 
         jLabel39.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(111, 111, 111));
         jLabel39.setText("Buscar Por");
 
+        cobBuscarMedico.setBackground(new java.awt.Color(220, 230, 207));
         cobBuscarMedico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cobBuscarMedico.setForeground(new java.awt.Color(110, 180, 10));
         cobBuscarMedico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Nombre", "Especialidad" }));
 
-        btnBuscarMedico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBuscarMedico.setBackground(new java.awt.Color(111, 111, 111));
+        btnBuscarMedico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBuscarMedico.setForeground(new java.awt.Color(132, 220, 4));
         btnBuscarMedico.setText("Buscar");
         btnBuscarMedico.addActionListener(this::btnBuscarMedicoActionPerformed);
 
+        txtCodigoMedico.setBackground(new java.awt.Color(220, 230, 207));
         txtCodigoMedico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCodigoMedico.setForeground(new java.awt.Color(110, 180, 10));
 
+        txtNombreMedico.setBackground(new java.awt.Color(220, 230, 207));
         txtNombreMedico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtNombreMedico.setForeground(new java.awt.Color(110, 180, 10));
 
+        txtTelefonoMedico.setBackground(new java.awt.Color(220, 230, 207));
         txtTelefonoMedico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtTelefonoMedico.setForeground(new java.awt.Color(110, 180, 10));
 
         jLabel29.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(111, 111, 111));
         jLabel29.setText("Especialidad");
 
+        txtEspecialidad.setBackground(new java.awt.Color(220, 230, 207));
         txtEspecialidad.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtEspecialidad.setForeground(new java.awt.Color(110, 180, 10));
 
         jLabel40.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel40.setForeground(new java.awt.Color(111, 111, 111));
         jLabel40.setText("Modificar Medico");
 
+        cobModificarMedico.setBackground(new java.awt.Color(220, 230, 207));
         cobModificarMedico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cobModificarMedico.setForeground(new java.awt.Color(110, 180, 10));
         cobModificarMedico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Seleccione un Medico --" }));
 
-        btnActualizarCredencialesMedico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnActualizarCredencialesMedico.setBackground(new java.awt.Color(111, 111, 111));
+        btnActualizarCredencialesMedico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnActualizarCredencialesMedico.setForeground(new java.awt.Color(132, 220, 4));
         btnActualizarCredencialesMedico.setText("Actualizar Credenciales");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -1017,11 +1171,17 @@ public class FormClinica extends javax.swing.JFrame {
 
         jPanel4.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 6, -1, 610));
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel10.setBackground(new java.awt.Color(196, 252, 92));
+        jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
 
         jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(111, 111, 111));
         jLabel30.setText("Registro de Medicos");
 
+        JS2.setBackground(new java.awt.Color(220, 230, 207));
+
+        tbMedicos.setBackground(new java.awt.Color(220, 230, 207));
+        tbMedicos.setForeground(new java.awt.Color(110, 180, 10));
         tbMedicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -1041,9 +1201,13 @@ public class FormClinica extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tbMedicos.setSelectionBackground(new java.awt.Color(132, 220, 4));
+        tbMedicos.setSelectionForeground(new java.awt.Color(68, 68, 68));
         JS2.setViewportView(tbMedicos);
 
-        btnEliminarMedico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEliminarMedico.setBackground(new java.awt.Color(111, 111, 111));
+        btnEliminarMedico.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEliminarMedico.setForeground(new java.awt.Color(132, 220, 4));
         btnEliminarMedico.setText("Eliminar");
         btnEliminarMedico.addActionListener(this::btnEliminarMedicoActionPerformed);
 
