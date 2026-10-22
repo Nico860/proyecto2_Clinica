@@ -55,6 +55,7 @@ public class Atencion implements java.io.Serializable {
     }
 
     public void setCosto(double costo) {
+        if(costo < 0) return;
         this.costo = costo;
     }
     
