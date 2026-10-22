@@ -51,9 +51,8 @@ public class FormClinica extends javax.swing.JFrame {
         cargarCitas();
         cargarAtenciones();
         
-        //Llenar los combo box (pacientes y médicos) y la tabla de atenciones al iniciar
+        //Llenar los combo box (pacientes y médicos
         actualizarComboBoxes();
-        mostrarHistorial(null);
         
         //Enlazar eventos de botones 
         //(btnBuscarMedico y btnBuscarCita ya se enlazan en initComponents)
@@ -1918,32 +1917,49 @@ public class FormClinica extends javax.swing.JFrame {
     
     //#Region actualizar ComboBoxes
     private void actualizarComboBoxes(){
+        actualizarComboBoxesPaciente();
+        actualizarComboBoxesMedico();
+    }
+    
+    private void actualizarComboBoxesPaciente(){
         cobPaciente.removeAllItems();
         cobPaciente.addItem("-- Seleccione un Paciente --");
+        
+        cobFiltrarPaciente.removeAllItems();
+        cobFiltrarPaciente.addItem("--Seleccione Paciente--");
         
         //combos de la pestaña Consultas
         cboPacientesAtenciones.removeAllItems();
         cboPacientesAtenciones.addItem("--Seleccione Paciente--");
-        cobFiltrarPaciente.removeAllItems();
-        cobFiltrarPaciente.addItem("--Seleccione Paciente--");
         
         for (Paciente p : pacientes) {
             String item = p.getCodigo() + " - " + p.getNombre();
             cobPaciente.addItem(item);
-            cboPacientesAtenciones.addItem(item);
             cobFiltrarPaciente.addItem(item);
         }
-
+      
+        //para seleccionar paciente a registrar en consultas
+        for (Cita cita : citas) {
+            if(cita.esEstado("atendida")){
+                Paciente p = cita.getPaciente();
+                String item = p.getCodigo() + " - " + p.getNombre();
+                cboPacientesAtenciones.addItem(item);
+            }
+        }
+    }
+    
+    private void actualizarComboBoxesMedico(){
         cobMedico.removeAllItems();
-        cobMedico.addItem("-- Seleccione un Medico --");
+        cobMedico.addItem("-- Seleccione un Medico --");    
+        
         cobModificarMedico.removeAllItems();
         cobModificarMedico.addItem("-- Seleccione un Medico --");
-
+        
         for (Medico m : medicos) {
             String item = m.getCodigo() + " - " + m.getNombre();
             cobMedico.addItem(item);
             cobModificarMedico.addItem(item);
-        }
+        }        
     }
     //EndRegion
     
