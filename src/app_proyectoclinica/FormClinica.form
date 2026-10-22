@@ -1783,6 +1783,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Actualizar Credenciales"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarCredencialesPacienteActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnBuscarPaciente">
                       <Properties>
@@ -1797,6 +1800,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Buscar"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarPacienteActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JToggleButton" name="btnAgregarPaciente1">
                       <Properties>
@@ -1932,6 +1938,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Eliminar"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarPacienteActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

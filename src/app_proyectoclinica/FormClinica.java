@@ -827,11 +827,13 @@ public class FormClinica extends javax.swing.JFrame {
         btnActualizarCredencialesPaciente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnActualizarCredencialesPaciente.setForeground(new java.awt.Color(132, 220, 4));
         btnActualizarCredencialesPaciente.setText("Actualizar Credenciales");
+        btnActualizarCredencialesPaciente.addActionListener(this::btnActualizarCredencialesPacienteActionPerformed);
 
         btnBuscarPaciente.setBackground(new java.awt.Color(111, 111, 111));
         btnBuscarPaciente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnBuscarPaciente.setForeground(new java.awt.Color(132, 220, 4));
         btnBuscarPaciente.setText("Buscar");
+        btnBuscarPaciente.addActionListener(this::btnBuscarPacienteActionPerformed);
 
         btnAgregarPaciente1.setBackground(new java.awt.Color(111, 111, 111));
         btnAgregarPaciente1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -955,6 +957,7 @@ public class FormClinica extends javax.swing.JFrame {
         btnEliminarPaciente.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEliminarPaciente.setForeground(new java.awt.Color(132, 220, 4));
         btnEliminarPaciente.setText("Eliminar");
+        btnEliminarPaciente.addActionListener(this::btnEliminarPacienteActionPerformed);
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -1626,14 +1629,137 @@ public class FormClinica extends javax.swing.JFrame {
         atenciones.add(atencion);
         guardarAtenciones();
         
-        //se limpian los campos y se refresca la tabla
-        txtDiagnostico.setText("");
-        txtCosto.setText("");
-        cboPacientesAtenciones.setSelectedIndex(0);
+        limpiarCamposConsulta();
+        
+        //se refresca la tabla
         mostrarHistorial(pacienteFiltrado());
         
         JOptionPane.showMessageDialog(this, "Atención registrada exitosamente.");
     }//GEN-LAST:event_btnRegistrarAtencionActionPerformed
+
+    private void btnActualizarCredencialesPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarCredencialesPacienteActionPerformed
+        // obtener los datos ingresados en los campos de texto
+        String codigo = txtCodigoPaciente.getText().trim();
+        String nombre = txtNombre.getText().trim();
+        String dpi =txtDpi.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+        
+        // Validar campos vacios
+        if(codigo.isEmpty()||nombre.isEmpty()||dpi.isEmpty()||telefono.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Complete todos los campos", "Hay campos vacíos",
+                JOptionPane.WARNING_MESSAGE);
+                return; //detern la ejecusión 
+        }
+        
+        //Variable para definir si se encontró
+        boolean encontrado = false;
+        
+        //Recorrer la lsita
+        for (Paciente p : pacientes) {
+            if (p.esCodigo(codigo)) { // Verifica que el código coincida
+                p.setNombre(nombre);
+                p.setDpi(dpi);
+                p.setTelefono(telefono);
+                encontrado = true;
+                break;//Detener ejecusión
+            }
+        }
+        
+        //Verificar el resulado encontrado o buscado
+        if(encontrado){
+            //Guardar la lista actualziada en el archivo "Personas.txt"
+            guardarMedicosOPacientes();
+            
+            //Actualizar la tabla y vampos para reflejar los campos
+            llenarTablaPacientes();
+            actualizarComboBoxes();
+            
+            //Limpiar los texfield
+            limpiarCamposPaciente();
+            
+            //Mostrar mensaje de diálogo
+            JOptionPane.showMessageDialog(this,
+                    "Paciente modificado correctamente.", 
+                    "Se ha completado exitosamente",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else{
+            JOptionPane.showMessageDialog(this,
+                    "No se encontró ningun paciente.",
+                    "Verifique nuevamente su información",
+                    JOptionPane.ERROR_MESSAGE);
+        }        
+    }//GEN-LAST:event_btnActualizarCredencialesPacienteActionPerformed
+
+    private void btnEliminarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPacienteActionPerformed
+        // Obtener el codigo ingresado enel campo
+        String codigo = txtCodigoPaciente.getText().trim();
+        
+        //Validar campos vacíos
+        if(codigo.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Ingrese el codigo del paciente a eliminar",
+                    "Campo vacío", JOptionPane.WARNING_MESSAGE);
+            return; //Detener ejecusión
+        }
+        
+        //Confirmar si el usario realmente desea eliminar al paciente
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Desea eliminar al paciente?", "Confirme",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        
+        //Si el usuario procede
+        if (confirmacion == JOptionPane.YES_OPTION){
+            //Implementación del metodo removeIf
+            boolean eliminado = pacientes.removeIf(p -> p.getCodigo().equalsIgnoreCase(codigo));
+            
+            if(eliminado){
+                //Reescribir el archibo "persona.txt" 
+                guardarMedicosOPacientes();
+                
+                //Refrescar la parte visual 
+                llenarTablaPacientes();
+                actualizarComboBoxes();
+                
+                //Limpieza de campos de texto
+                limpiarCamposPaciente();
+                
+                JOptionPane.showMessageDialog(this,"Paciente dadode baja",
+                        "Eliminado exitosamente", JOptionPane.INFORMATION_MESSAGE);
+            } else{
+                JOptionPane.showMessageDialog(this, "No se encontró el paciente ingresado",
+                        "Error de eliminación", JOptionPane.ERROR_MESSAGE);
+            }
+        }        
+    }//GEN-LAST:event_btnEliminarPacienteActionPerformed
+
+    private void btnBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPacienteActionPerformed
+        // Mostrar ventana emergente para que el usuario escriba el texto a buscar
+        String criterio = JOptionPane.showInputDialog(
+            this, 
+            "Ingrese el código, nmbre o DPI del paciente:", 
+            "Buscar", 
+            JOptionPane.QUESTION_MESSAGE
+        );
+        // si el usuario no ingresa nada
+        if (criterio == null || criterio.trim().isEmpty()){
+            llenarTablaPacientes(); //Reestablece todos los registros
+            return; //Detiene la ejecusión
+        }
+        
+        //Genera la tabla dinámica con las columnas necesarias
+        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(    
+        new String[]{"Código", "Nombre", "DPI", "Teléfono"}, 0);
+        
+        //Recorrer la lista para buscar coincidencias
+        for(Paciente p: pacientes){
+            //Verificar si hay semejanzas con el codigo, dpi o nombre
+            if(p.esCodigo(criterio.trim()) || p.getDpi().equalsIgnoreCase(criterio.trim()) || p.getNombre().toLowerCase().contains(criterio.trim().toLowerCase())){
+            //Si hay, entonces se añade el paciente como nueva fila
+            model.addRow(new Object[]{p.getCodigo(), p.getNombre(), p.getDpi(), p.getTelefono()});
+            }
+        }
+        
+        //Asignar el filtrado al control jtable
+        tbPacientes.setModel(model);
+    }//GEN-LAST:event_btnBuscarPacienteActionPerformed
 
     //EVENTOS PARA BOTONES
     
@@ -1866,6 +1992,12 @@ public class FormClinica extends javax.swing.JFrame {
         txtDpi.setText("");
         txtTelefono.setText("");
     }
+    
+    private void limpiarCamposConsulta(){
+        txtDiagnostico.setText("");
+        txtCosto.setText("");
+        cboPacientesAtenciones.setSelectedIndex(0);
+    }
     //EndRegion
     
     //#Region llenarTablas
@@ -1982,23 +2114,6 @@ public class FormClinica extends javax.swing.JFrame {
         }
         return null;       
     }
-    
-    //Método para buscar Paciente por Códgio o DPI
-    /*private void buscarPaciente(String criterio) {
-        if (criterio.isEmpty()) {
-            llenarTablaPacientes();
-            return;
-        }
-        javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(
-            new String[]{"Código", "Nombre", "DPI", "Teléfono"}, 0
-        );
-        for (Paciente p : pacientes) {
-            if (p.getCodigo().equalsIgnoreCase(criterio) || p.getDpi().equalsIgnoreCase(criterio) || p.getNombre().toLowerCase().contains(criterio.toLowerCase())) {
-                model.addRow(new Object[]{p.getCodigo(), p.getNombre(), p.getDpi(), p.getTelefono()});
-            }
-        }
-        jTable2.setModel(model);
-    } */  
     //EndRegion
     
     //#Region modificar
@@ -2186,6 +2301,7 @@ public class FormClinica extends javax.swing.JFrame {
         lblTotalCostos.setText(String.format(java.util.Locale.US, "Q %.2f", total));
     }
     //EndRegion
+    
     
     /**
      * @param args the command line arguments
