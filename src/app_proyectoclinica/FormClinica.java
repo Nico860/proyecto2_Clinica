@@ -16,6 +16,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Objects;
 import javax.swing.JOptionPane;
 
 /**
@@ -88,6 +89,7 @@ public class FormClinica extends javax.swing.JFrame {
         cobFiltrarPaciente = new javax.swing.JComboBox<>();
         jSeparator7 = new javax.swing.JSeparator();
         txtBuscarHistorial = new javax.swing.JButton();
+        btnRecargarTablaAtenciones = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbHistorialAtenciones = new javax.swing.JTable();
@@ -130,6 +132,7 @@ public class FormClinica extends javax.swing.JFrame {
         rbtnPendiente = new javax.swing.JRadioButton();
         rbtnAtendida = new javax.swing.JRadioButton();
         rbtnCancelada = new javax.swing.JRadioButton();
+        btnRecargarTablaCitas = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         JS = new javax.swing.JScrollPane();
@@ -155,6 +158,7 @@ public class FormClinica extends javax.swing.JFrame {
         btnActualizarCredencialesPaciente = new javax.swing.JButton();
         btnBuscarPaciente = new javax.swing.JButton();
         btnAgregarPaciente1 = new javax.swing.JToggleButton();
+        btnRecargarTablaPacientes = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -182,6 +186,7 @@ public class FormClinica extends javax.swing.JFrame {
         jLabel40 = new javax.swing.JLabel();
         cobModificarMedico = new javax.swing.JComboBox<>();
         btnActualizarCredencialesMedico = new javax.swing.JButton();
+        btnRecragarTablaMedicos = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         JS2 = new javax.swing.JScrollPane();
@@ -263,26 +268,27 @@ public class FormClinica extends javax.swing.JFrame {
         txtBuscarHistorial.setForeground(new java.awt.Color(132, 220, 4));
         txtBuscarHistorial.setText("Buscar");
 
+        btnRecargarTablaAtenciones.setBackground(new java.awt.Color(111, 111, 111));
+        btnRecargarTablaAtenciones.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRecargarTablaAtenciones.setForeground(new java.awt.Color(132, 220, 4));
+        btnRecargarTablaAtenciones.setText("Recargar Tabla");
+        btnRecargarTablaAtenciones.addActionListener(this::btnRecargarTablaAtencionesActionPerformed);
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(txtBuscarHistorial)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnRegistrarAtencion))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(jLabel31)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 49, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCosto, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                            .addComponent(txtCosto)
                             .addComponent(jLabel34)
                             .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -291,8 +297,16 @@ public class FormClinica extends javax.swing.JFrame {
                                 .addComponent(txtDiagnostico)
                                 .addComponent(jSeparator6))
                             .addComponent(jLabel35)
-                            .addComponent(cobFiltrarPaciente, 0, 278, Short.MAX_VALUE)
-                            .addComponent(jSeparator7))))
+                            .addComponent(cobFiltrarPaciente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator7)))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnRecargarTablaAtenciones)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(txtBuscarHistorial)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnRegistrarAtencion)))))
                 .addGap(24, 24, 24))
         );
         jPanel11Layout.setVerticalGroup(
@@ -326,10 +340,12 @@ public class FormClinica extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrarAtencion)
                     .addComponent(txtBuscarHistorial))
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRecargarTablaAtenciones)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
-        jPanel5.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 320, 600));
+        jPanel5.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 320, 610));
 
         jPanel12.setBackground(new java.awt.Color(196, 252, 92));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
@@ -529,7 +545,7 @@ public class FormClinica extends javax.swing.JFrame {
         cobMinuto.setBackground(new java.awt.Color(220, 230, 207));
         cobMinuto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cobMinuto.setForeground(new java.awt.Color(110, 180, 10));
-        cobMinuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cobMinuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
 
         jPanel13.setBackground(new java.awt.Color(132, 220, 4));
 
@@ -566,6 +582,12 @@ public class FormClinica extends javax.swing.JFrame {
                 .addComponent(rbtnCancelada))
         );
 
+        btnRecargarTablaCitas.setBackground(new java.awt.Color(111, 111, 111));
+        btnRecargarTablaCitas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRecargarTablaCitas.setForeground(new java.awt.Color(132, 220, 4));
+        btnRecargarTablaCitas.setText("Recargar Tabla");
+        btnRecargarTablaCitas.addActionListener(this::btnRecargarTablaCitasActionPerformed);
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -600,38 +622,40 @@ public class FormClinica extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(67, 67, 67))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cobBuscarCita, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(jLabel13)
-                                .addGap(68, 68, 68)
-                                .addComponent(jLabel14))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cobPaciente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(cobHora, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cobMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16)
-                            .addComponent(cobMedico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtMotivo)
-                            .addComponent(jSeparator2)
-                            .addComponent(jSeparator1)
-                            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(btnNuevaCita)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnGuardarCita)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnBuscarCita)))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnRecargarTablaCitas)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(cobBuscarCita, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                    .addGap(25, 25, 25)
+                                    .addComponent(jLabel13)
+                                    .addGap(68, 68, 68)
+                                    .addComponent(jLabel14))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cobPaciente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                    .addComponent(cobHora, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cobMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel16)
+                                .addComponent(cobMedico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtMotivo)
+                                .addComponent(jSeparator2)
+                                .addComponent(jSeparator1)
+                                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                    .addComponent(btnNuevaCita)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnGuardarCita)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnBuscarCita))))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel6Layout.setVerticalGroup(
@@ -693,7 +717,9 @@ public class FormClinica extends javax.swing.JFrame {
                     .addComponent(btnNuevaCita)
                     .addComponent(btnGuardarCita)
                     .addComponent(btnBuscarCita))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRecargarTablaCitas)
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 6, 302, -1));
@@ -751,10 +777,10 @@ public class FormClinica extends javax.swing.JFrame {
                 .addComponent(jLabel17)
                 .addGap(18, 18, 18)
                 .addComponent(JS, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 6, -1, 586));
+        jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 6, -1, 620));
 
         jTabbedPane1.addTab("Citas", jPanel2);
 
@@ -840,6 +866,12 @@ public class FormClinica extends javax.swing.JFrame {
         btnAgregarPaciente1.setText("Agregar");
         btnAgregarPaciente1.addActionListener(this::btnAgregarPaciente1ActionPerformed);
 
+        btnRecargarTablaPacientes.setBackground(new java.awt.Color(111, 111, 111));
+        btnRecargarTablaPacientes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRecargarTablaPacientes.setForeground(new java.awt.Color(132, 220, 4));
+        btnRecargarTablaPacientes.setText("Recargar Tabla");
+        btnRecargarTablaPacientes.addActionListener(this::btnRecargarTablaPacientesActionPerformed);
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -865,7 +897,10 @@ public class FormClinica extends javax.swing.JFrame {
                             .addComponent(txtCodigoPaciente)
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnAgregarPaciente1)
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addComponent(btnRecargarTablaPacientes)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnAgregarPaciente1))
                                     .addGroup(jPanel8Layout.createSequentialGroup()
                                         .addComponent(btnActualizarCredencialesPaciente)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -919,7 +954,9 @@ public class FormClinica extends javax.swing.JFrame {
                     .addComponent(btnActualizarCredencialesPaciente)
                     .addComponent(btnBuscarPaciente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAgregarPaciente1)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregarPaciente1)
+                    .addComponent(btnRecargarTablaPacientes))
                 .addGap(1350, 1350, 1350)
                 .addComponent(fieldTxtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1075,6 +1112,12 @@ public class FormClinica extends javax.swing.JFrame {
         btnActualizarCredencialesMedico.setText("Actualizar Credenciales");
         btnActualizarCredencialesMedico.addActionListener(this::btnActualizarCredencialesMedicoActionPerformed);
 
+        btnRecragarTablaMedicos.setBackground(new java.awt.Color(111, 111, 111));
+        btnRecragarTablaMedicos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRecragarTablaMedicos.setForeground(new java.awt.Color(132, 220, 4));
+        btnRecragarTablaMedicos.setText("Recargar Tabla");
+        btnRecragarTablaMedicos.addActionListener(this::btnRecragarTablaMedicosActionPerformed);
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -1088,10 +1131,12 @@ public class FormClinica extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(btnActualizarCredencialesMedico)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                         .addComponent(btnBuscarMedico))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnRecragarTablaMedicos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRegistrarMedico)))
                 .addGap(33, 33, 33))
             .addGroup(jPanel9Layout.createSequentialGroup()
@@ -1167,7 +1212,9 @@ public class FormClinica extends javax.swing.JFrame {
                     .addComponent(btnBuscarMedico)
                     .addComponent(btnActualizarCredencialesMedico))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRegistrarMedico)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegistrarMedico)
+                    .addComponent(btnRecragarTablaMedicos))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1314,9 +1361,10 @@ public class FormClinica extends javax.swing.JFrame {
             return;
         }
         
-        //se guarda y se refresca la tabla
+        //se guarda, se refresca la tabla y comboBoxes
         guardarCitas();
         llenarTablaCitas();
+        actualizarComboBoxes();
         JOptionPane.showMessageDialog(this, "El cambio de estado fue exitoso");
     }//GEN-LAST:event_btnGuardarCitaActionPerformed
 
@@ -1618,8 +1666,16 @@ public class FormClinica extends javax.swing.JFrame {
         //se obtiene el paciente a partir del código del combo ("codigo - nombre")
         String codPaciente = cboPacientesAtenciones.getSelectedItem().toString().split(" - ")[0];
         Paciente paciente = buscarPaciente(codPaciente);
-        if (paciente == null) {
+        if (Objects.isNull(paciente)) {
             JOptionPane.showMessageDialog(this, "No se encontró el paciente seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //se busca la cita con estado pendiente que aun no halla tenido una consulta
+        Cita cita = buscarCitaAtendidaDeUnPaciente(paciente);
+        
+        if(Objects.isNull(cita)){
+            JOptionPane.showMessageDialog(this, "No se encontro una cita con estado atendida del paciente.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
@@ -1629,10 +1685,15 @@ public class FormClinica extends javax.swing.JFrame {
         atenciones.add(atencion);
         guardarAtenciones();
         
+        //se actualiza el estado de consulta realizada y se actualiza y guarda la lista de citas
+        cita.marcarAtencionRealizada();
+        guardarCitas();
+        
         limpiarCamposConsulta();
         
-        //se refresca la tabla
+        //se refresca la tabla y comboBoxes
         mostrarHistorial(pacienteFiltrado());
+        actualizarComboBoxes();
         
         JOptionPane.showMessageDialog(this, "Atención registrada exitosamente.");
     }//GEN-LAST:event_btnRegistrarAtencionActionPerformed
@@ -1780,6 +1841,26 @@ public class FormClinica extends javax.swing.JFrame {
         actualizarComboBoxes();
         JOptionPane.showMessageDialog(this, "Credenciales del médico actualizadas correctamente.");
     }//GEN-LAST:event_btnActualizarCredencialesMedicoActionPerformed
+
+    private void btnRecargarTablaAtencionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecargarTablaAtencionesActionPerformed
+        //refresca la vista
+        mostrarHistorial(null);
+    }//GEN-LAST:event_btnRecargarTablaAtencionesActionPerformed
+
+    private void btnRecargarTablaCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecargarTablaCitasActionPerformed
+        //se refresca la vista
+        llenarTablaCitas();
+    }//GEN-LAST:event_btnRecargarTablaCitasActionPerformed
+
+    private void btnRecargarTablaPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecargarTablaPacientesActionPerformed
+        // se refresca la vista
+        llenarTablaPacientes();
+    }//GEN-LAST:event_btnRecargarTablaPacientesActionPerformed
+
+    private void btnRecragarTablaMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecragarTablaMedicosActionPerformed
+        // se refresca la vista
+        llenartablalMedicos();
+    }//GEN-LAST:event_btnRecragarTablaMedicosActionPerformed
 
     //EVENTOS PARA BOTONES
     
@@ -1968,6 +2049,9 @@ public class FormClinica extends javax.swing.JFrame {
         //vacía los campos del formulario de cita
         txtMotivo.setText("");
         txtAno.setText("");
+        //dejar por defecto en el indice 0 en los comboBox
+        cobPaciente.setSelectedIndex(0);
+        cobMedico.setSelectedIndex(0);
     }
     
     private void limpiarCamposMedico(){
@@ -2070,7 +2154,7 @@ public class FormClinica extends javax.swing.JFrame {
       
         //para seleccionar paciente a registrar en consultas
         for (Cita cita : citas) {
-            if(cita.esEstado("atendida")){
+            if(!cita.getAtencionRealizada() && cita.esEstado("atendida")){
                 Paciente p = cita.getPaciente();
                 String item = p.getCodigo() + " - " + p.getNombre();
                 cboPacientesAtenciones.addItem(item);
@@ -2111,6 +2195,15 @@ public class FormClinica extends javax.swing.JFrame {
             }
         }
         return null;       
+    }
+    
+    private Cita buscarCitaAtendidaDeUnPaciente(Paciente paciente){
+        //se recorre la lista y se filtra 
+        for (Cita cita : citas) {
+            if(cita.esEstado("atendida") && cita.esPaciente(paciente))
+                return cita;
+        }
+        return null;
     }
     //EndRegion
     
@@ -2340,6 +2433,10 @@ public class FormClinica extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarPaciente;
     private javax.swing.JButton btnGuardarCita;
     private javax.swing.JButton btnNuevaCita;
+    private javax.swing.JButton btnRecargarTablaAtenciones;
+    private javax.swing.JButton btnRecargarTablaCitas;
+    private javax.swing.JButton btnRecargarTablaPacientes;
+    private javax.swing.JButton btnRecragarTablaMedicos;
     private javax.swing.JButton btnRegistrarAtencion;
     private javax.swing.JButton btnRegistrarMedico;
     private javax.swing.JComboBox<String> cboPacientesAtenciones;

@@ -19,6 +19,7 @@ public class Cita implements Serializable{
     private String motivo;
     private String estado;
     private String hora;
+    private boolean atencionRealizada;
     
     //constructor
 
@@ -29,6 +30,7 @@ public class Cita implements Serializable{
         this.motivo = motivo;
         this.estado = estado;
         this.hora = hora;
+        this.atencionRealizada = false;
     }   
     
     //Compara el estado en la base de datos con el ingresado
@@ -72,6 +74,14 @@ public class Cita implements Serializable{
         return true; // Asegurar que se realizó con éxito;
     }
     
+    //para indicar que ya fue realizado una atención
+    public void marcarAtencionRealizada(){
+        //se valida que el estado sea atendida
+        if(!esEstado("atendida")) return;
+        
+        atencionRealizada = true;
+    }
+    
     //Getters
     public Paciente getPaciente() {
         return paciente;
@@ -97,5 +107,7 @@ public class Cita implements Serializable{
         return hora;
     }
     
-    
+    public boolean getAtencionRealizada(){
+        return atencionRealizada;
+    }
 }
