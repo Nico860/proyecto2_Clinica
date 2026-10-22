@@ -73,30 +73,7 @@ public class FormClinica extends javax.swing.JFrame {
         Estado = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        cboPacientesAtenciones = new javax.swing.JComboBox<>();
-        jLabel33 = new javax.swing.JLabel();
-        txtDiagnostico = new javax.swing.JTextField();
-        jLabel34 = new javax.swing.JLabel();
-        txtCosto = new javax.swing.JTextField();
-        jLabel35 = new javax.swing.JLabel();
-        btnRegistrarAtencion = new javax.swing.JButton();
-        jSeparator5 = new javax.swing.JSeparator();
-        jSeparator6 = new javax.swing.JSeparator();
-        cobFiltrarPaciente = new javax.swing.JComboBox<>();
-        jSeparator7 = new javax.swing.JSeparator();
-        txtBuscarHistorial = new javax.swing.JButton();
-        btnRecargarTablaAtenciones = new javax.swing.JButton();
-        jPanel12 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbHistorialAtenciones = new javax.swing.JTable();
-        jLabel36 = new javax.swing.JLabel();
-        lblTotalCostos = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        PanelCitas = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -137,7 +114,7 @@ public class FormClinica extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         JS = new javax.swing.JScrollPane();
         tbCitas = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
+        PanelPacientes = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -164,7 +141,7 @@ public class FormClinica extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbPacientes = new javax.swing.JTable();
         btnEliminarPaciente = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        PanelMedicos = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -192,6 +169,29 @@ public class FormClinica extends javax.swing.JFrame {
         JS2 = new javax.swing.JScrollPane();
         tbMedicos = new javax.swing.JTable();
         btnEliminarMedico = new javax.swing.JButton();
+        PanelConsultas = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        cboPacientesAtenciones = new javax.swing.JComboBox<>();
+        jLabel33 = new javax.swing.JLabel();
+        txtDiagnostico = new javax.swing.JTextField();
+        jLabel34 = new javax.swing.JLabel();
+        txtCosto = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
+        btnRegistrarAtencion = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        cobFiltrarPaciente = new javax.swing.JComboBox<>();
+        jSeparator7 = new javax.swing.JSeparator();
+        txtBuscarHistorial = new javax.swing.JButton();
+        btnRecargarTablaAtenciones = new javax.swing.JButton();
+        jPanel12 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbHistorialAtenciones = new javax.swing.JTable();
+        jLabel36 = new javax.swing.JLabel();
+        lblTotalCostos = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -203,228 +203,8 @@ public class FormClinica extends javax.swing.JFrame {
         jTabbedPane1.setForeground(new java.awt.Color(110, 180, 10));
         jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        jPanel5.setBackground(new java.awt.Color(111, 111, 111));
-        jPanel5.setForeground(new java.awt.Color(196, 25, 190));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel11.setBackground(new java.awt.Color(132, 220, 4));
-        jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
-
-        jLabel31.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(111, 111, 111));
-        jLabel31.setText("Registro de Atenciones");
-
-        jLabel32.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(111, 111, 111));
-        jLabel32.setText("Paciente");
-
-        cboPacientesAtenciones.setBackground(new java.awt.Color(220, 230, 207));
-        cboPacientesAtenciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cboPacientesAtenciones.setForeground(new java.awt.Color(110, 180, 10));
-        cboPacientesAtenciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione Paciente--" }));
-        cboPacientesAtenciones.addActionListener(this::cboPacientesAtencionesActionPerformed);
-
-        jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(111, 111, 111));
-        jLabel33.setText("Diagnostico");
-
-        txtDiagnostico.setBackground(new java.awt.Color(220, 230, 207));
-        txtDiagnostico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtDiagnostico.setForeground(new java.awt.Color(110, 180, 10));
-
-        jLabel34.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(111, 111, 111));
-        jLabel34.setText("Costo");
-
-        txtCosto.setBackground(new java.awt.Color(220, 230, 207));
-        txtCosto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtCosto.setForeground(new java.awt.Color(110, 180, 10));
-
-        jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel35.setForeground(new java.awt.Color(111, 111, 111));
-        jLabel35.setText("Filtrar por Paciente");
-
-        btnRegistrarAtencion.setBackground(new java.awt.Color(111, 111, 111));
-        btnRegistrarAtencion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnRegistrarAtencion.setForeground(new java.awt.Color(132, 220, 4));
-        btnRegistrarAtencion.setText("Registrar");
-        btnRegistrarAtencion.addActionListener(this::btnRegistrarAtencionActionPerformed);
-
-        jSeparator5.setBackground(new java.awt.Color(68, 68, 68));
-        jSeparator5.setForeground(new java.awt.Color(68, 68, 68));
-
-        jSeparator6.setBackground(new java.awt.Color(68, 68, 68));
-        jSeparator6.setForeground(new java.awt.Color(68, 68, 68));
-
-        cobFiltrarPaciente.setBackground(new java.awt.Color(220, 230, 207));
-        cobFiltrarPaciente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cobFiltrarPaciente.setForeground(new java.awt.Color(110, 180, 10));
-        cobFiltrarPaciente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione Paciente--" }));
-
-        jSeparator7.setForeground(new java.awt.Color(68, 68, 68));
-
-        txtBuscarHistorial.setBackground(new java.awt.Color(111, 111, 111));
-        txtBuscarHistorial.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtBuscarHistorial.setForeground(new java.awt.Color(132, 220, 4));
-        txtBuscarHistorial.setText("Buscar");
-
-        btnRecargarTablaAtenciones.setBackground(new java.awt.Color(111, 111, 111));
-        btnRecargarTablaAtenciones.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnRecargarTablaAtenciones.setForeground(new java.awt.Color(132, 220, 4));
-        btnRecargarTablaAtenciones.setText("Recargar Tabla");
-        btnRecargarTablaAtenciones.addActionListener(this::btnRecargarTablaAtencionesActionPerformed);
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel31)
-                        .addGap(0, 49, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCosto)
-                            .addComponent(jLabel34)
-                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cboPacientesAtenciones, 0, 276, Short.MAX_VALUE)
-                                .addComponent(jLabel33)
-                                .addComponent(txtDiagnostico)
-                                .addComponent(jSeparator6))
-                            .addComponent(jLabel35)
-                            .addComponent(cobFiltrarPaciente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator7)))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnRecargarTablaAtenciones)
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addComponent(txtBuscarHistorial)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnRegistrarAtencion)))))
-                .addGap(24, 24, 24))
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel31)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(jLabel32)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cboPacientesAtenciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel33)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel34)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel35)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cobFiltrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrarAtencion)
-                    .addComponent(txtBuscarHistorial))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRecargarTablaAtenciones)
-                .addContainerGap(109, Short.MAX_VALUE))
-        );
-
-        jPanel5.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 320, 610));
-
-        jPanel12.setBackground(new java.awt.Color(196, 252, 92));
-        jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
-
-        tbHistorialAtenciones.setBackground(new java.awt.Color(220, 230, 207));
-        tbHistorialAtenciones.setForeground(new java.awt.Color(110, 180, 10));
-        tbHistorialAtenciones.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Paciente", "Fecha", "Diagnostico", "Costo"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        tbHistorialAtenciones.setSelectionBackground(new java.awt.Color(132, 220, 4));
-        tbHistorialAtenciones.setSelectionForeground(new java.awt.Color(68, 68, 68));
-        jScrollPane2.setViewportView(tbHistorialAtenciones);
-
-        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel36.setForeground(new java.awt.Color(111, 111, 111));
-        jLabel36.setText("Total de Costos: ");
-
-        lblTotalCostos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblTotalCostos.setForeground(new java.awt.Color(68, 68, 68));
-
-        jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel41.setForeground(new java.awt.Color(111, 111, 111));
-        jLabel41.setText("Registro de Atenciones");
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel12Layout.createSequentialGroup()
-                                .addComponent(jLabel36)
-                                .addGap(59, 59, 59)
-                                .addComponent(lblTotalCostos, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel41)))
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel41)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTotalCostos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel36))
-                .addContainerGap(28, Short.MAX_VALUE))
-        );
-
-        jPanel5.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 730, 600));
-
-        jTabbedPane1.addTab("Consultas", jPanel5);
-
-        jPanel2.setBackground(new java.awt.Color(111, 111, 111));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PanelCitas.setBackground(new java.awt.Color(111, 111, 111));
+        PanelCitas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(132, 220, 4));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
@@ -722,7 +502,7 @@ public class FormClinica extends javax.swing.JFrame {
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 6, 302, -1));
+        PanelCitas.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 6, 302, -1));
 
         jPanel7.setBackground(new java.awt.Color(196, 252, 92));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
@@ -780,12 +560,12 @@ public class FormClinica extends javax.swing.JFrame {
                 .addContainerGap(95, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 6, -1, 620));
+        PanelCitas.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 6, -1, 620));
 
-        jTabbedPane1.addTab("Citas", jPanel2);
+        jTabbedPane1.addTab("Citas", PanelCitas);
 
-        jPanel3.setBackground(new java.awt.Color(111, 111, 111));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PanelPacientes.setBackground(new java.awt.Color(111, 111, 111));
+        PanelPacientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel8.setBackground(new java.awt.Color(132, 220, 4));
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
@@ -962,7 +742,7 @@ public class FormClinica extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 600));
+        PanelPacientes.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 600));
 
         jPanel14.setBackground(new java.awt.Color(196, 252, 92));
         jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
@@ -982,9 +762,17 @@ public class FormClinica extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Código", "Nombre", "DPI", "Télefono"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         tbPacientes.setSelectionBackground(new java.awt.Color(132, 220, 4));
         tbPacientes.setSelectionForeground(new java.awt.Color(68, 68, 68));
         jScrollPane1.setViewportView(tbPacientes);
@@ -1023,12 +811,12 @@ public class FormClinica extends javax.swing.JFrame {
                 .addGap(43, 43, 43))
         );
 
-        jPanel3.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 730, 600));
+        PanelPacientes.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 730, 600));
 
-        jTabbedPane1.addTab("Pacientes", jPanel3);
+        jTabbedPane1.addTab("Pacientes", PanelPacientes);
 
-        jPanel4.setBackground(new java.awt.Color(111, 111, 111));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PanelMedicos.setBackground(new java.awt.Color(111, 111, 111));
+        PanelMedicos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel9.setBackground(new java.awt.Color(132, 220, 4));
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
@@ -1218,7 +1006,7 @@ public class FormClinica extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 6, -1, 610));
+        PanelMedicos.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 6, -1, 610));
 
         jPanel10.setBackground(new java.awt.Color(196, 252, 92));
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
@@ -1291,9 +1079,229 @@ public class FormClinica extends javax.swing.JFrame {
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 6, -1, 610));
+        PanelMedicos.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 6, -1, 610));
 
-        jTabbedPane1.addTab("Medicos", jPanel4);
+        jTabbedPane1.addTab("Medicos", PanelMedicos);
+
+        PanelConsultas.setBackground(new java.awt.Color(111, 111, 111));
+        PanelConsultas.setForeground(new java.awt.Color(196, 25, 190));
+        PanelConsultas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel11.setBackground(new java.awt.Color(132, 220, 4));
+        jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
+
+        jLabel31.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(111, 111, 111));
+        jLabel31.setText("Registro de Atenciones");
+
+        jLabel32.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(111, 111, 111));
+        jLabel32.setText("Paciente");
+
+        cboPacientesAtenciones.setBackground(new java.awt.Color(220, 230, 207));
+        cboPacientesAtenciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cboPacientesAtenciones.setForeground(new java.awt.Color(110, 180, 10));
+        cboPacientesAtenciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione Paciente--" }));
+        cboPacientesAtenciones.addActionListener(this::cboPacientesAtencionesActionPerformed);
+
+        jLabel33.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(111, 111, 111));
+        jLabel33.setText("Diagnostico");
+
+        txtDiagnostico.setBackground(new java.awt.Color(220, 230, 207));
+        txtDiagnostico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtDiagnostico.setForeground(new java.awt.Color(110, 180, 10));
+
+        jLabel34.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(111, 111, 111));
+        jLabel34.setText("Costo");
+
+        txtCosto.setBackground(new java.awt.Color(220, 230, 207));
+        txtCosto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtCosto.setForeground(new java.awt.Color(110, 180, 10));
+
+        jLabel35.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(111, 111, 111));
+        jLabel35.setText("Filtrar por Paciente");
+
+        btnRegistrarAtencion.setBackground(new java.awt.Color(111, 111, 111));
+        btnRegistrarAtencion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegistrarAtencion.setForeground(new java.awt.Color(132, 220, 4));
+        btnRegistrarAtencion.setText("Registrar");
+        btnRegistrarAtencion.addActionListener(this::btnRegistrarAtencionActionPerformed);
+
+        jSeparator5.setBackground(new java.awt.Color(68, 68, 68));
+        jSeparator5.setForeground(new java.awt.Color(68, 68, 68));
+
+        jSeparator6.setBackground(new java.awt.Color(68, 68, 68));
+        jSeparator6.setForeground(new java.awt.Color(68, 68, 68));
+
+        cobFiltrarPaciente.setBackground(new java.awt.Color(220, 230, 207));
+        cobFiltrarPaciente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cobFiltrarPaciente.setForeground(new java.awt.Color(110, 180, 10));
+        cobFiltrarPaciente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione Paciente--" }));
+
+        jSeparator7.setForeground(new java.awt.Color(68, 68, 68));
+
+        txtBuscarHistorial.setBackground(new java.awt.Color(111, 111, 111));
+        txtBuscarHistorial.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtBuscarHistorial.setForeground(new java.awt.Color(132, 220, 4));
+        txtBuscarHistorial.setText("Buscar");
+
+        btnRecargarTablaAtenciones.setBackground(new java.awt.Color(111, 111, 111));
+        btnRecargarTablaAtenciones.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRecargarTablaAtenciones.setForeground(new java.awt.Color(132, 220, 4));
+        btnRecargarTablaAtenciones.setText("Recargar Tabla");
+        btnRecargarTablaAtenciones.addActionListener(this::btnRecargarTablaAtencionesActionPerformed);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel31)
+                        .addGap(0, 49, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtCosto)
+                            .addComponent(jLabel34)
+                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cboPacientesAtenciones, 0, 276, Short.MAX_VALUE)
+                                .addComponent(jLabel33)
+                                .addComponent(txtDiagnostico)
+                                .addComponent(jSeparator6))
+                            .addComponent(jLabel35)
+                            .addComponent(cobFiltrarPaciente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator7)))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnRecargarTablaAtenciones)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addComponent(txtBuscarHistorial)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnRegistrarAtencion)))))
+                .addGap(24, 24, 24))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cboPacientesAtenciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cobFiltrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegistrarAtencion)
+                    .addComponent(txtBuscarHistorial))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRecargarTablaAtenciones)
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
+
+        PanelConsultas.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 320, 610));
+
+        jPanel12.setBackground(new java.awt.Color(196, 252, 92));
+        jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 180, 10)));
+
+        tbHistorialAtenciones.setBackground(new java.awt.Color(220, 230, 207));
+        tbHistorialAtenciones.setForeground(new java.awt.Color(110, 180, 10));
+        tbHistorialAtenciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Paciente", "Fecha", "Diagnostico", "Costo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tbHistorialAtenciones.setSelectionBackground(new java.awt.Color(132, 220, 4));
+        tbHistorialAtenciones.setSelectionForeground(new java.awt.Color(68, 68, 68));
+        jScrollPane2.setViewportView(tbHistorialAtenciones);
+
+        jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(111, 111, 111));
+        jLabel36.setText("Total de Costos: ");
+
+        lblTotalCostos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblTotalCostos.setForeground(new java.awt.Color(68, 68, 68));
+
+        jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(111, 111, 111));
+        jLabel41.setText("Registro de Atenciones");
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel12Layout.createSequentialGroup()
+                                .addComponent(jLabel36)
+                                .addGap(59, 59, 59)
+                                .addComponent(lblTotalCostos, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel41)))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTotalCostos, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel36))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        PanelConsultas.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 730, 600));
+
+        jTabbedPane1.addTab("Consultas", PanelConsultas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -2423,6 +2431,10 @@ public class FormClinica extends javax.swing.JFrame {
     private javax.swing.ButtonGroup Estado;
     private javax.swing.JScrollPane JS;
     private javax.swing.JScrollPane JS2;
+    private javax.swing.JPanel PanelCitas;
+    private javax.swing.JPanel PanelConsultas;
+    private javax.swing.JPanel PanelMedicos;
+    private javax.swing.JPanel PanelPacientes;
     private javax.swing.JButton btnActualizarCredencialesMedico;
     private javax.swing.JButton btnActualizarCredencialesPaciente;
     private javax.swing.JToggleButton btnAgregarPaciente1;
@@ -2500,10 +2512,6 @@ public class FormClinica extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
